@@ -1,0 +1,20 @@
+{
+  "name": "cinecampus",
+  "version": "1.0.0",
+  "main": "app.js",
+  "type": "commonjs",
+  "scripts": {
+    "dev": "node --watch --env-file .env app.js"
+  },
+  "keywords": [],
+  "author": "Willliam Jair Sepulveda Carrillo",
+  "license": "ISC",
+  "dependencies": {
+    "mongodb": "^6.8.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.5.0",
+    "typescript": "^5.5.4"
+  },
+  "description": ""
+}

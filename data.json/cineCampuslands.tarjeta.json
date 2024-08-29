@@ -1,0 +1,91 @@
+[{
+  "_id": {
+    "$oid": "66d080553170ffb8c89f4be6"
+  },
+  "id_cliente": {
+    "$oid": "66d078803170ffb8c89f4bc0"
+  },
+  "codigo_usuario": 1,
+  "fecha_expedicion": {
+    "$date": "2024-08-01T10:00:00.000Z"
+  },
+  "estado": "Activo"
+},
+{
+  "_id": {
+    "$oid": "66d080553170ffb8c89f4be7"
+  },
+  "id_cliente": {
+    "$oid": "66d078803170ffb8c89f4bc1"
+  },
+  "codigo_usuario": 2,
+  "fecha_expedicion": {
+    "$date": "2024-08-02T11:00:00.000Z"
+  },
+  "estado": "Activo"
+},
+{
+  "_id": {
+    "$oid": "66d080553170ffb8c89f4be8"
+  },
+  "id_cliente": {
+    "$oid": "66d078803170ffb8c89f4bc2"
+  },
+  "codigo_usuario": 3,
+  "fecha_expedicion": {
+    "$date": "2024-08-03T12:00:00.000Z"
+  },
+  "estado": "Inactivo"
+},
+{
+  "_id": {
+    "$oid": "66d080553170ffb8c89f4be9"
+  },
+  "id_cliente": {
+    "$oid": "66d078803170ffb8c89f4bc3"
+  },
+  "codigo_usuario": 4,
+  "fecha_expedicion": {
+    "$date": "2024-08-04T13:00:00.000Z"
+  },
+  "estado": "Inactivo"
+},
+{
+  "_id": {
+    "$oid": "66d080553170ffb8c89f4bea"
+  },
+  "id_cliente": {
+    "$oid": "66d078803170ffb8c89f4bc4"
+  },
+  "codigo_usuario": 5,
+  "fecha_expedicion": {
+    "$date": "2024-08-05T14:00:00.000Z"
+  },
+  "estado": "Activo"
+},
+{
+  "_id": {
+    "$oid": "66d080553170ffb8c89f4beb"
+  },
+  "id_cliente": {
+    "$oid": "66d078803170ffb8c89f4bc5"
+  },
+  "codigo_usuario": 6,
+  "fecha_expedicion": {
+    "$date": "2024-08-06T15:00:00.000Z"
+  },
+  "estado": "Inactivo"
+},
+{
+  "_id": {
+    "$oid": "66d080553170ffb8c89f4bec"
+  },
+  "id_cliente": {
+    "$oid": "66d078803170ffb8c89f4bc6"
+  },
+  "codigo_usuario": 7,
+  "fecha_expedicion": {
+    "$date": "2024-08-07T16:00:00.000Z"
+  },
+  "estado": "Activo"
+}]

@@ -1,0 +1,153 @@
+[{
+  "_id": {
+    "$oid": "646a0c4f1b0f3b5d16c58215"
+  },
+  "id_pelicula": {
+    "$oid": "646a0c4f1b0f3b5d16c58222"
+  },
+  "id_lugar": {
+    "$oid": "646a0c4f1b0f3b5d16c58223"
+  },
+  "fecha_hora_inicio": {
+    "$date": "2024-08-29T18:00:00.000Z"
+  },
+  "fecha_hora_fin": {
+    "$date": "2024-08-29T20:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "646a0c4f1b0f3b5d16c58217"
+  },
+  "id_pelicula": {
+    "$oid": "646a0c4f1b0f3b5d16c58224"
+  },
+  "id_lugar": {
+    "$oid": "646a0c4f1b0f3b5d16c58225"
+  },
+  "fecha_hora_inicio": {
+    "$date": "2024-08-29T20:00:00.000Z"
+  },
+  "fecha_hora_fin": {
+    "$date": "2024-08-29T22:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "646a0c4f1b0f3b5d16c58219"
+  },
+  "id_pelicula": {
+    "$oid": "646a0c4f1b0f3b5d16c58226"
+  },
+  "id_lugar": {
+    "$oid": "646a0c4f1b0f3b5d16c58227"
+  },
+  "fecha_hora_inicio": {
+    "$date": "2024-08-30T18:00:00.000Z"
+  },
+  "fecha_hora_fin": {
+    "$date": "2024-08-30T20:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "646a0c4f1b0f3b5d16c5821b"
+  },
+  "id_pelicula": {
+    "$oid": "646a0c4f1b0f3b5d16c58228"
+  },
+  "id_lugar": {
+    "$oid": "646a0c4f1b0f3b5d16c58229"
+  },
+  "fecha_hora_inicio": {
+    "$date": "2024-08-30T20:00:00.000Z"
+  },
+  "fecha_hora_fin": {
+    "$date": "2024-08-30T22:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "646a0c4f1b0f3b5d16c5821d"
+  },
+  "id_pelicula": {
+    "$oid": "646a0c4f1b0f3b5d16c5822a"
+  },
+  "id_lugar": {
+    "$oid": "646a0c4f1b0f3b5d16c5822b"
+  },
+  "fecha_hora_inicio": {
+    "$date": "2024-08-31T18:00:00.000Z"
+  },
+  "fecha_hora_fin": {
+    "$date": "2024-08-31T20:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "646a0c4f1b0f3b5d16c5821f"
+  },
+  "id_pelicula": {
+    "$oid": "646a0c4f1b0f3b5d16c5822c"
+  },
+  "id_lugar": {
+    "$oid": "646a0c4f1b0f3b5d16c5822d"
+  },
+  "fecha_hora_inicio": {
+    "$date": "2024-08-31T20:00:00.000Z"
+  },
+  "fecha_hora_fin": {
+    "$date": "2024-08-31T22:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "646a0c4f1b0f3b5d16c58221"
+  },
+  "id_pelicula": {
+    "$oid": "646a0c4f1b0f3b5d16c5822e"
+  },
+  "id_lugar": {
+    "$oid": "646a0c4f1b0f3b5d16c5822f"
+  },
+  "fecha_hora_inicio": {
+    "$date": "2024-09-01T18:00:00.000Z"
+  },
+  "fecha_hora_fin": {
+    "$date": "2024-09-01T20:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "646a0c4f1b0f3b5d16c58222"
+  },
+  "id_pelicula": {
+    "$oid": "646a0c4f1b0f3b5d16c58230"
+  },
+  "id_lugar": {
+    "$oid": "646a0c4f1b0f3b5d16c58231"
+  },
+  "fecha_hora_inicio": {
+    "$date": "2024-09-01T20:00:00.000Z"
+  },
+  "fecha_hora_fin": {
+    "$date": "2024-09-01T22:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "646a0c4f1b0f3b5d16c58223"
+  },
+  "id_pelicula": {
+    "$oid": "646a0c4f1b0f3b5d16c58232"
+  },
+  "id_lugar": {
+    "$oid": "646a0c4f1b0f3b5d16c58233"
+  },
+  "fecha_hora_inicio": {
+    "$date": "2024-09-02T18:00:00.000Z"
+  },
+  "fecha_hora_fin": {
+    "$date": "2024-09-02T20:00:00.000Z"
+  }
+}]
