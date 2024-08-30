@@ -1,0 +1,56 @@
+[{
+  "_id": {
+    "$oid": "66d07a7e3170ffb8c89f4bd1"
+  },
+  "id": 101,
+  "nombre": "Cinépolis Andino",
+  "precio": 15
+},
+{
+  "_id": {
+    "$oid": "66d07a7e3170ffb8c89f4bd2"
+  },
+  "id": 102,
+  "nombre": "Cinépolis Plaza de las Américas",
+  "precio": 13.5
+},
+{
+  "_id": {
+    "$oid": "66d07a7e3170ffb8c89f4bd3"
+  },
+  "id": 103,
+  "nombre": "Cinépolis Santafé",
+  "precio": 14
+},
+{
+  "_id": {
+    "$oid": "66d07a7e3170ffb8c89f4bd4"
+  },
+  "id": 104,
+  "nombre": "Cinépolis Unicentro",
+  "precio": 12
+},
+{
+  "_id": {
+    "$oid": "66d07a7e3170ffb8c89f4bd5"
+  },
+  "id": 105,
+  "nombre": "Cinépolis Xtreme",
+  "precio": 16
+},
+{
+  "_id": {
+    "$oid": "66d07a7e3170ffb8c89f4bd6"
+  },
+  "id": 106,
+  "nombre": "Cinépolis Calima",
+  "precio": 11
+},
+{
+  "_id": {
+    "$oid": "66d07a7e3170ffb8c89f4bd7"
+  },
+  "id": 107,
+  "nombre": "Cinépolis El Tesoro",
+  "precio": 14.5
+}]

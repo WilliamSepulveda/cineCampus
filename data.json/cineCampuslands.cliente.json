@@ -1,0 +1,107 @@
+[{
+  "_id": {
+    "$oid": "66d078803170ffb8c89f4bc0"
+  },
+  "nombre": "Juan",
+  "apellido": "Pérez",
+  "nick": "juanito",
+  "email": "juan.perez@example.com",
+  "telefono": [
+    "1234567890",
+    "0987654321"
+  ],
+  "tipos_de_categoria": [
+    "VIP",
+    "Regular"
+  ]
+},
+{
+  "_id": {
+    "$oid": "66d078803170ffb8c89f4bc1"
+  },
+  "nombre": "María",
+  "apellido": "García",
+  "nick": "mariag",
+  "email": "maria.garcia@example.com",
+  "telefono": [
+    "1231231234"
+  ],
+  "tipos_de_categoria": [
+    "VIP"
+  ]
+},
+{
+  "_id": {
+    "$oid": "66d078803170ffb8c89f4bc2"
+  },
+  "nombre": "Carlos",
+  "apellido": "Lopez",
+  "nick": "carlito",
+  "email": "carlos.lopez@example.com",
+  "telefono": [
+    "3213213210"
+  ],
+  "tipos_de_categoria": [
+    "Regular"
+  ]
+},
+{
+  "_id": {
+    "$oid": "66d078803170ffb8c89f4bc3"
+  },
+  "nombre": "Ana",
+  "apellido": "Martínez",
+  "nick": "anam",
+  "email": "ana.martinez@example.com",
+  "telefono": [
+    "4564564567"
+  ],
+  "tipos_de_categoria": [
+    "Regular"
+  ]
+},
+{
+  "_id": {
+    "$oid": "66d078803170ffb8c89f4bc4"
+  },
+  "nombre": "Luis",
+  "apellido": "Fernández",
+  "nick": "luisf",
+  "email": "luis.fernandez@example.com",
+  "telefono": [
+    "6546546543"
+  ],
+  "tipos_de_categoria": [
+    "VIP"
+  ]
+},
+{
+  "_id": {
+    "$oid": "66d078803170ffb8c89f4bc5"
+  },
+  "nombre": "Isabel",
+  "apellido": "Rodríguez",
+  "nick": "isabelr",
+  "email": "isabel.rodriguez@example.com",
+  "telefono": [
+    "7897897890"
+  ],
+  "tipos_de_categoria": [
+    "Regular"
+  ]
+},
+{
+  "_id": {
+    "$oid": "66d078803170ffb8c89f4bc6"
+  },
+  "nombre": "José",
+  "apellido": "Hernández",
+  "nick": "joseh",
+  "email": "jose.hernandez@example.com",
+  "telefono": [
+    "9879879876"
+  ],
+  "tipos_de_categoria": [
+    "VIP"
+  ]
+}]

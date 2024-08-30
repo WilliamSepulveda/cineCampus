@@ -1,0 +1,91 @@
+[{
+  "_id": {
+    "$oid": "646a0c4f1b0f3b5d16c58214"
+  },
+  "codigo_cliente": 123,
+  "id_funcion": {
+    "$oid": "646a0c4f1b0f3b5d16c58215"
+  },
+  "tipo_movimiento": {
+    "id": 1,
+    "nombre": "Compra"
+  }
+},
+{
+  "_id": {
+    "$oid": "646a0c4f1b0f3b5d16c58216"
+  },
+  "codigo_cliente": 124,
+  "id_funcion": {
+    "$oid": "646a0c4f1b0f3b5d16c58217"
+  },
+  "tipo_movimiento": {
+    "id": 2,
+    "nombre": "Reserva"
+  }
+},
+{
+  "_id": {
+    "$oid": "646a0c4f1b0f3b5d16c58218"
+  },
+  "codigo_cliente": 125,
+  "id_funcion": {
+    "$oid": "646a0c4f1b0f3b5d16c58219"
+  },
+  "tipo_movimiento": {
+    "id": 3,
+    "nombre": "Cancelación"
+  }
+},
+{
+  "_id": {
+    "$oid": "646a0c4f1b0f3b5d16c5821a"
+  },
+  "codigo_cliente": 126,
+  "id_funcion": {
+    "$oid": "646a0c4f1b0f3b5d16c5821b"
+  },
+  "tipo_movimiento": {
+    "id": 4,
+    "nombre": "Intercambio"
+  }
+},
+{
+  "_id": {
+    "$oid": "646a0c4f1b0f3b5d16c5821c"
+  },
+  "codigo_cliente": 127,
+  "id_funcion": {
+    "$oid": "646a0c4f1b0f3b5d16c5821d"
+  },
+  "tipo_movimiento": {
+    "id": 5,
+    "nombre": "Devolución"
+  }
+},
+{
+  "_id": {
+    "$oid": "646a0c4f1b0f3b5d16c5821e"
+  },
+  "codigo_cliente": 128,
+  "id_funcion": {
+    "$oid": "646a0c4f1b0f3b5d16c5821f"
+  },
+  "tipo_movimiento": {
+    "id": 6,
+    "nombre": "Reembolso"
+  }
+},
+{
+  "_id": {
+    "$oid": "646a0c4f1b0f3b5d16c58220"
+  },
+  "codigo_cliente": 129,
+  "id_funcion": {
+    "$oid": "646a0c4f1b0f3b5d16c58221"
+  },
+  "tipo_movimiento": {
+    "id": 7,
+    "nombre": "Otro"
+  }
+}]

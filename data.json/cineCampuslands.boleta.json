@@ -1,0 +1,84 @@
+[{
+  "_id": {
+    "$oid": "66d07cde3170ffb8c89f4bd8"
+  },
+  "id_movimiento": {
+    "$oid": "646a0c4f1b0f3b5d16c58214"
+  },
+  "id_asiento": 1,
+  "fecha_adquisicion": {
+    "$date": "2024-08-25T14:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "66d07cde3170ffb8c89f4bd9"
+  },
+  "id_movimiento": {
+    "$oid": "646a0c4f1b0f3b5d16c58216"
+  },
+  "id_asiento": 2,
+  "fecha_adquisicion": {
+    "$date": "2024-08-26T15:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "66d07cde3170ffb8c89f4bda"
+  },
+  "id_movimiento": {
+    "$oid": "646a0c4f1b0f3b5d16c58218"
+  },
+  "id_asiento": 3,
+  "fecha_adquisicion": {
+    "$date": "2024-08-27T16:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "66d07cde3170ffb8c89f4bdb"
+  },
+  "id_movimiento": {
+    "$oid": "646a0c4f1b0f3b5d16c5821a"
+  },
+  "id_asiento": 4,
+  "fecha_adquisicion": {
+    "$date": "2024-08-28T17:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "66d07cde3170ffb8c89f4bdc"
+  },
+  "id_movimiento": {
+    "$oid": "646a0c4f1b0f3b5d16c5821c"
+  },
+  "id_asiento": 5,
+  "fecha_adquisicion": {
+    "$date": "2024-08-29T18:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "66d07cde3170ffb8c89f4bdd"
+  },
+  "id_movimiento": {
+    "$oid": "646a0c4f1b0f3b5d16c5821e"
+  },
+  "id_asiento": 6,
+  "fecha_adquisicion": {
+    "$date": "2024-08-30T19:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "66d07cde3170ffb8c89f4bde"
+  },
+  "id_movimiento": {
+    "$oid": "646a0c4f1b0f3b5d16c58220"
+  },
+  "id_asiento": 7,
+  "fecha_adquisicion": {
+    "$date": "2024-08-31T20:00:00.000Z"
+  }
+}]

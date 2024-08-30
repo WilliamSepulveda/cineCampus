@@ -1,0 +1,120 @@
+[{
+  "_id": {
+    "$oid": "66d0777d3170ffb8c89f4bb4"
+  },
+  "titulo": "The Marvels",
+  "genero": "Acción",
+  "duracion": 105,
+  "sinopsis": "Las heroínas de Marvel se unen para enfrentar una nueva amenaza intergaláctica.",
+  "estado": "en estreno"
+},
+{
+  "_id": {
+    "$oid": "66d0777d3170ffb8c89f4bb5"
+  },
+  "titulo": "Wish",
+  "genero": "Animación",
+  "duracion": 110,
+  "sinopsis": "Una joven busca una estrella fugaz que puede cumplir cualquier deseo.",
+  "estado": "en estreno"
+},
+{
+  "_id": {
+    "$oid": "66d0777d3170ffb8c89f4bb6"
+  },
+  "titulo": "Dune: Part Two",
+  "genero": "Ciencia Ficción",
+  "duracion": 155,
+  "sinopsis": "La continuación de la épica saga de ciencia ficción basada en la novela de Frank Herbert.",
+  "estado": "en estreno"
+},
+{
+  "_id": {
+    "$oid": "66d0777d3170ffb8c89f4bb7"
+  },
+  "titulo": "Wonka",
+  "genero": "Aventura",
+  "duracion": 130,
+  "sinopsis": "Una historia de origen sobre el joven Willy Wonka y su camino para convertirse en el famoso chocolatero.",
+  "estado": "en estreno"
+},
+{
+  "_id": {
+    "$oid": "66d0777d3170ffb8c89f4bb8"
+  },
+  "titulo": "Joker: Folie à Deux",
+  "genero": "Crimen",
+  "duracion": 120,
+  "sinopsis": "Secuela del exitoso 'Joker', con más exploración de la compleja psique del personaje principal.",
+  "estado": "en estreno"
+},
+{
+  "_id": {
+    "$oid": "66d0777d3170ffb8c89f4bb9"
+  },
+  "titulo": "Aquaman and the Lost Kingdom",
+  "genero": "Acción",
+  "duracion": 120,
+  "sinopsis": "La secuela de 'Aquaman' sigue las nuevas aventuras del héroe submarino.",
+  "estado": "pronto lanzamiento"
+},
+{
+  "_id": {
+    "$oid": "66d0777d3170ffb8c89f4bba"
+  },
+  "titulo": "The Exorcist: Believer",
+  "genero": "Horror",
+  "duracion": 105,
+  "sinopsis": "Una nueva entrega en la saga de 'El Exorcista', con una trama aterradora y llena de suspenso.",
+  "estado": "pronto lanzamiento"
+},
+{
+  "_id": {
+    "$oid": "66d0777d3170ffb8c89f4bbb"
+  },
+  "titulo": "Blade",
+  "genero": "Acción",
+  "duracion": 110,
+  "sinopsis": "El cazador de vampiros regresa en una nueva adaptación moderna.",
+  "estado": "pronto lanzamiento"
+},
+{
+  "_id": {
+    "$oid": "66d0777d3170ffb8c89f4bbc"
+  },
+  "titulo": "The Hunger Games: The Ballad of Songbirds & Snakes",
+  "genero": "Aventura",
+  "duracion": 120,
+  "sinopsis": "Una precuela de la saga de 'Los Juegos del Hambre', explorando el origen de los juegos.",
+  "estado": "pronto lanzamiento"
+},
+{
+  "_id": {
+    "$oid": "66d0777d3170ffb8c89f4bbd"
+  },
+  "titulo": "Fantastic Four",
+  "genero": "Acción",
+  "duracion": 115,
+  "sinopsis": "La reinvención del equipo de superhéroes de Marvel, enfrentando una amenaza cósmica.",
+  "estado": "pronto lanzamiento"
+},
+{
+  "_id": {
+    "$oid": "66d077ad3170ffb8c89f4bbe"
+  },
+  "titulo": "The Flash",
+  "genero": "Acción",
+  "duracion": 144,
+  "sinopsis": "Barry Allen viaja atrás en el tiempo para evitar el asesinato de su madre, lo que desestabiliza el universo y crea un nuevo multiverso.",
+  "estado": "fuera de taquilla"
+},
+{
+  "_id": {
+    "$oid": "66d077ad3170ffb8c89f4bbf"
+  },
+  "titulo": "Shazam! Fury of the Gods",
+  "genero": "Acción",
+  "duracion": 130,
+  "sinopsis": "El joven Shazam enfrenta una nueva amenaza de dioses antiguos que buscan recuperar sus poderes.",
+  "estado": "fuera de taquilla"
+}]
