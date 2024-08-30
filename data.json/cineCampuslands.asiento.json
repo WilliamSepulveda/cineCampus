@@ -1,150 +1,142 @@
-[{
-  "_id": {
-    "$oid": "66d079643170ffb8c89f4bc7"
+[
+  {
+    "_id": { "$oid": "66d079643170ffb8c89f4bc7" },
+    "id": 1,
+    "id_lugar": 101,
+    "tipo_de_fila": {
+      "nombre": "Fila Premium",
+      "incremento": 5
+    },
+    "codigo": {
+      "asiento": "A1",
+      "zona": "VIP"
+    },
+    "estado": "Disponible"
   },
-  "id": 1,
-  "id_lugar": 101,
-  "tipo_de_fila": {
-    "nombre": "Fila Premium",
-    "incremento": 5
+  {
+    "_id": { "$oid": "66d079643170ffb8c89f4bc8" },
+    "id": 2,
+    "id_lugar": 102,
+    "tipo_de_fila": {
+      "nombre": "Fila Estándar",
+      "incremento": 2
+    },
+    "codigo": {
+      "asiento": "A2",
+      "zona": "General"
+    },
+    "estado": "No Disponible"
   },
-  "codigo": {
-    "asiento": "A1",
-    "zona": "VIP"
+  {
+    "_id": { "$oid": "66d079643170ffb8c89f4bc9" },
+    "id": 3,
+    "id_lugar": 103,
+    "tipo_de_fila": {
+      "nombre": "Fila Deluxe",
+      "incremento": 10
+    },
+    "codigo": {
+      "asiento": "B1",
+      "zona": "VIP"
+    },
+    "estado": "Disponible"
+  },
+  {
+    "_id": { "$oid": "66d079643170ffb8c89f4bca" },
+    "id": 4,
+    "id_lugar": 104,
+    "tipo_de_fila": {
+      "nombre": "Fila Premium",
+      "incremento": 5
+    },
+    "codigo": {
+      "asiento": "B2",
+      "zona": "General"
+    },
+    "estado": "No Disponible"
+  },
+  {
+    "_id": { "$oid": "66d079643170ffb8c89f4bcb" },
+    "id": 5,
+    "id_lugar": 105,
+    "tipo_de_fila": {
+      "nombre": "Fila Estándar",
+      "incremento": 2
+    },
+    "codigo": {
+      "asiento": "C1",
+      "zona": "VIP"
+    },
+    "estado": "Disponible"
+  },
+  {
+    "_id": { "$oid": "66d079643170ffb8c89f4bcc" },
+    "id": 6,
+    "id_lugar": 106,
+    "tipo_de_fila": {
+      "nombre": "Fila Deluxe",
+      "incremento": 10
+    },
+    "codigo": {
+      "asiento": "C2",
+      "zona": "General"
+    },
+    "estado": "No Disponible"
+  },
+  {
+    "_id": { "$oid": "66d079643170ffb8c89f4bcd" },
+    "id": 7,
+    "id_lugar": 107,
+    "tipo_de_fila": {
+      "nombre": "Fila Premium",
+      "incremento": 5
+    },
+    "codigo": {
+      "asiento": "D1",
+      "zona": "VIP"
+    },
+    "estado": "Disponible"
+  },
+  {
+    "_id": { "$oid": "66d079643170ffb8c89f4bce" },
+    "id": 8,
+    "id_lugar": 108,
+    "tipo_de_fila": {
+      "nombre": "Fila Estándar",
+      "incremento": 2
+    },
+    "codigo": {
+      "asiento": "D2",
+      "zona": "General"
+    },
+    "estado": "No Disponible"
+  },
+  {
+    "_id": { "$oid": "66d079643170ffb8c89f4bcf" },
+    "id": 9,
+    "id_lugar": 109,
+    "tipo_de_fila": {
+      "nombre": "Fila Deluxe",
+      "incremento": 10
+    },
+    "codigo": {
+      "asiento": "E1",
+      "zona": "VIP"
+    },
+    "estado": "Disponible"
+  },
+  {
+    "_id": { "$oid": "66d079643170ffb8c89f4bd0" },
+    "id": 10,
+    "id_lugar": 110,
+    "tipo_de_fila": {
+      "nombre": "Fila Premium",
+      "incremento": 5
+    },
+    "codigo": {
+      "asiento": "E2",
+      "zona": "General"
+    },
+    "estado": "No Disponible"
   }
-},
-{
-  "_id": {
-    "$oid": "66d079643170ffb8c89f4bc8"
-  },
-  "id": 2,
-  "id_lugar": 102,
-  "tipo_de_fila": {
-    "nombre": "Fila Estándar",
-    "incremento": 2
-  },
-  "codigo": {
-    "asiento": "A2",
-    "zona": "General"
-  }
-},
-{
-  "_id": {
-    "$oid": "66d079643170ffb8c89f4bc9"
-  },
-  "id": 3,
-  "id_lugar": 103,
-  "tipo_de_fila": {
-    "nombre": "Fila Deluxe",
-    "incremento": 10
-  },
-  "codigo": {
-    "asiento": "B1",
-    "zona": "VIP"
-  }
-},
-{
-  "_id": {
-    "$oid": "66d079643170ffb8c89f4bca"
-  },
-  "id": 4,
-  "id_lugar": 104,
-  "tipo_de_fila": {
-    "nombre": "Fila Premium",
-    "incremento": 5
-  },
-  "codigo": {
-    "asiento": "B2",
-    "zona": "General"
-  }
-},
-{
-  "_id": {
-    "$oid": "66d079643170ffb8c89f4bcb"
-  },
-  "id": 5,
-  "id_lugar": 105,
-  "tipo_de_fila": {
-    "nombre": "Fila Estándar",
-    "incremento": 2
-  },
-  "codigo": {
-    "asiento": "C1",
-    "zona": "VIP"
-  }
-},
-{
-  "_id": {
-    "$oid": "66d079643170ffb8c89f4bcc"
-  },
-  "id": 6,
-  "id_lugar": 106,
-  "tipo_de_fila": {
-    "nombre": "Fila Deluxe",
-    "incremento": 10
-  },
-  "codigo": {
-    "asiento": "C2",
-    "zona": "General"
-  }
-},
-{
-  "_id": {
-    "$oid": "66d079643170ffb8c89f4bcd"
-  },
-  "id": 7,
-  "id_lugar": 107,
-  "tipo_de_fila": {
-    "nombre": "Fila Premium",
-    "incremento": 5
-  },
-  "codigo": {
-    "asiento": "D1",
-    "zona": "VIP"
-  }
-},
-{
-  "_id": {
-    "$oid": "66d079643170ffb8c89f4bce"
-  },
-  "id": 8,
-  "id_lugar": 108,
-  "tipo_de_fila": {
-    "nombre": "Fila Estándar",
-    "incremento": 2
-  },
-  "codigo": {
-    "asiento": "D2",
-    "zona": "General"
-  }
-},
-{
-  "_id": {
-    "$oid": "66d079643170ffb8c89f4bcf"
-  },
-  "id": 9,
-  "id_lugar": 109,
-  "tipo_de_fila": {
-    "nombre": "Fila Deluxe",
-    "incremento": 10
-  },
-  "codigo": {
-    "asiento": "E1",
-    "zona": "VIP"
-  }
-},
-{
-  "_id": {
-    "$oid": "66d079643170ffb8c89f4bd0"
-  },
-  "id": 10,
-  "id_lugar": 110,
-  "tipo_de_fila": {
-    "nombre": "Fila Premium",
-    "incremento": 5
-  },
-  "codigo": {
-    "asiento": "E2",
-    "zona": "General"
-  }
-}]
+]
