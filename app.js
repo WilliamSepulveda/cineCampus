@@ -1,10 +1,10 @@
 const Pelicula = require ("./js/module/pelicula");
+const asiento = require("./js/module/asiento");
 const { ObjectId } = require('mongodb')
 const Boletas = require('./js/module/boleta');
+const Asientos = require("./js/module/asiento");
 
-/**
- * ejemplo de uso para listar todas las peliculas
- */
+// // ejemplo listar todas la peliculas 
 // let obj = new Pelicula();
 // obj.getAllPelicula()
 //     .then(res => {
@@ -14,7 +14,7 @@ const Boletas = require('./js/module/boleta');
 //         console.log(err);
 //     });
 
-
+// // listar las peliculas por id
 // let obj = new Pelicula();
 // obj.getSpecificMovies("66d0777d3170ffb8c89f4bb4")
 //     .then(res=>{
@@ -24,21 +24,34 @@ const Boletas = require('./js/module/boleta');
 //         console.log(err);
 //     })
 
+// // compra de boleta 
+// const idBoleta = "66d07cde3170ffb8c89f4bd9"; 
+// const tipoMovimiento = {
+//     id: 2,
+//     nombre: "compra"
+// };
 
-const idBoleta = "66d07cde3170ffb8c89f4bd9"; 
-const tipoMovimiento = {
-    id: 2,
-    nombre: "compra"
-};
+// const newBoletas = new Boletas();
 
-const newBoletas = new Boletas();
+// newBoletas.BuyBoletas(idBoleta, tipoMovimiento)
+//     .then(res => {
+//         console.log("Operación completada.");
+//         console.log("Detalles de la boleta:", res.boleta);
+//         console.log("Tipo de movimiento:", res.movimiento);
+//     })
+//     .catch(err => {
+//         console.error("Error en la operación:", err);
+//     });
 
-newBoletas.BuyBoletas(idBoleta, tipoMovimiento)
+// // consulta de disponibilidad de asientos
+const asientos = new Asientos();
+const idFuncion = '646a0c4f1b0f3b5d16c58222';
+const idLugar = 101;
+
+asientos.consultarDisponibilidad(idFuncion, idLugar)
     .then(res => {
-        console.log("Operación completada.");
-        console.log("Detalles de la boleta:", res.boleta);
-        console.log("Tipo de movimiento:", res.movimiento);
+        console.log('Disponibilidad de asientos:', res);
     })
     .catch(err => {
-        console.error("Error en la operación:", err);
+        console.error('Error al consultar disponibilidad:', err);
     });
