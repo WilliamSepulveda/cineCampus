@@ -10,7 +10,6 @@ module.exports = class Boletas extends connect {
         this.collectionBoletas = 'Boleta';
         this.collectionMovimientos = 'movimientos'; 
     }
-
     /**
      * Permite la compra de una boleta para una película específica en una fecha y hora determinada,
      * si la boleta está disponible, y registra el tipo de movimiento en la colección de movimientos.
@@ -64,5 +63,79 @@ module.exports = class Boletas extends connect {
         } finally {
             await this.conection.close(); 
         }
+    } 
+    /**
+     * Aplica un descuento al precio original si el usuario es VIP.
+     * @param {number} precioOriginal - El precio original de la boleta.
+     * @param {Object} usuario - El objeto que representa al usuario.
+     * @returns {number} - El precio con descuento si el usuario es VIP, o el precio original si no lo es.
+     */
+    aplicarDescuento(precioOriginal, usuario) {
+        const descuentoVIP = 0.20;
+        if (usuario.tipos_de_categoria.includes('VIP')) {
+            return precioOriginal * (1 - descuentoVIP);
+        }
+        return precioOriginal;
     }
-}
+    /**
+     * Compra una boleta con descuento si el usuario es VIP y actualiza el estado de la boleta.
+     * @param {string} idBoleta - El ID de la boleta a comprar.
+     * @param {Object} tipoMovimiento - El objeto que representa el tipo de movimiento.
+     * @returns {Promise<Object>} - Un objeto con la boleta actualizada y el movimiento realizado.
+     */
+    async BuyBoletasDescuento(idBoleta, tipoMovimiento) {
+        try {
+            await this.open(); 
+            const collectionBoletas = this.db.collection(this.collectionBoletas);
+            const collectionMovimientos = this.db.collection(this.collectionMovimientos);
+
+            const dbBoleta = await collectionBoletas.findOne({ _id: new ObjectId(idBoleta) });
+
+            if (!dbBoleta || !dbBoleta.estado.includes('Disponible')) {
+                throw new Error('Boleta no disponible');
+            }
+
+            const usuario = {
+                tipos_de_categoria: ['VIP'] // Aquí deberías obtener el usuario real
+            };
+
+            const precioOriginal = dbBoleta.precio || 100;
+
+            const precioFinal = this.aplicarDescuento(precioOriginal, usuario);
+
+            const resultadoBoleta = await collectionBoletas.updateOne(
+                { _id: new ObjectId(idBoleta) },
+                { $set: { estado: ["no Disponible"] } }
+            );
+
+            if (resultadoBoleta.modifiedCount > 0) {
+                const boletaActualizada = await collectionBoletas.findOne({ _id: new ObjectId(idBoleta) });
+    
+                const movimiento = {
+                    codigo_cliente: 124, 
+                    id_funcion: new ObjectId(idBoleta), 
+                    tipo_movimiento: tipoMovimiento,
+                    precio_final: precioFinal
+                };
+
+                await collectionMovimientos.insertOne(movimiento);
+
+                console.log('Boleta encontrada:', boletaActualizada);
+                console.log('Compra realizada exitosamente. Precio final:', precioFinal);
+
+                return {
+                    boleta: boletaActualizada,
+                    movimiento: movimiento
+                };
+            } else {
+                throw new Error('Hubo un problema al realizar la compra');
+            }
+        } catch (err) {
+            console.log('Error al finalizar la compra', err);
+            throw err; 
+        } finally {
+            await this.conection.close(); 
+        }
+    }
+  
+};
