@@ -271,3 +271,162 @@ usuarioId:
 
     Tipo: string
     Descripción: El ID del usuario que realizó la reserva.
+
+# Descuentos y Tarjetas VIP
+
+## API para Aplicar Descuentos
+
+
+### Descripcion
+El método BuyBoletasDescuento es un método asincrónico que gestiona la compra de una boleta aplicando un descuento si corresponde. La función realiza las siguientes acciones:
+
+    Abrir la conexión a la base de datos: Usa el método open para asegurarse de que la conexión a la base de datos está establecida.
+
+    Acceder a las colecciones: Obtiene referencias a las colecciones Boletas y Movimientos en la base de datos.
+
+    Buscar la boleta: Utiliza findOne para buscar la boleta en la colección Boletas por su _id. Si la boleta no está disponible (es decir, no está en estado 'Disponible'), lanza un error.
+
+    Determinar el descuento: Asume que el usuario es VIP (esto se debería obtener de manera dinámica en un caso real). Calcula el precio final aplicando un descuento basado en el tipo de usuario.
+
+    Actualizar el estado de la boleta: Cambia el estado de la boleta a 'no Disponible' en la colección Boletas.
+
+    Registrar el movimiento: Crea un documento de movimiento en la colección Movimientos con información sobre la compra, incluyendo el precio final.
+
+    Devolver resultados: Devuelve un objeto que contiene la boleta actualizada y el movimiento registrado si la actualización y la inserción son exitosas.
+
+    Manejo de errores: Captura y muestra errores que puedan ocurrir durante el proceso de compra.
+
+    Cerrar la conexión: Finalmente, cierra la conexión a la base de datos en el bloque finally, asegurando que la conexión se cierre sin importar si la operación fue exitosa o si ocurrió un error.
+### Ejemplo de uso 
+```javascript
+const idBoleta = "66d07cde3170ffb8c89f4bd9"; 
+const tipoMovimiento = {
+    id: 2,
+    nombre: "compra"
+};
+const newBoletas = new Boletas();
+newBoletas.BuyBoletasDescuento(idBoleta, tipoMovimiento)
+    .then(res => {
+        console.log("Operación completada.");
+        console.log("Detalles de la boleta:", res.boleta);
+        console.log("Tipo de movimiento:", res.movimiento);
+    })
+    .catch(err => {
+        console.error("Error en la operación:", err);
+    });
+```
+### Funcionalidad
+Compra de Boleta: Permite comprar una boleta si está disponible, actualizando su estado y registrando la compra.
+Aplicación de Descuento: Aplica un descuento al precio de la boleta si el usuario es VIP.
+Registro de Movimiento: Inserta un registro de la transacción en la colección Movimientos para fines de seguimiento o contabilidad.
+
+### Párametros 
+idBoleta:
+
+    Tipo: string
+    Descripción: El identificador único de la boleta que se desea comprar. Se usa para buscar la boleta en la base de datos.
+
+tipoMovimiento:
+
+    Tipo: string
+    Descripción: El tipo de movimiento que se registra en la colección Movimientos. Puede ser, por ejemplo, 'compra' o 'vent
+
+## API para Verificar Tarjeta VIP
+
+### Descripcion
+
+### Ejemplo de uso 
+```javascript
+const idBoleta = "66d07cde3170ffb8c89f4bd9";
+const usuarioId = "66d078803170ffb8c89f4bc4"; 
+const tipoMovimiento = {
+    id: 2,
+    nombre: "compra"
+};
+
+const newBoletas = new Boletas();
+
+newBoletas.verificacionUsuario(idBoleta, usuarioId, tipoMovimiento)
+    .then(res => {
+        console.log("Operación completada.");
+        console.log("Detalles de la boleta:", res.boleta);
+        console.log("Tipo de movimiento:", res.movimiento);
+    })
+    .catch(err => {
+        console.error("Error en la operación:", err);
+    });
+```
+### Descripción del Código
+
+El método verificacionUsuario se encarga de realizar la compra de una boleta, verificando si el usuario tiene una tarjeta VIP válida para aplicar un descuento. El método sigue los siguientes pasos:
+
+    Abrir la conexión a la base de datos: Usa el método open para asegurarse de que la conexión a la base de datos está establecida.
+
+    Buscar la boleta: Busca la boleta en la colección Boletas utilizando el ID proporcionado. Si la boleta no está disponible (es decir, no está en estado 'Disponible'), lanza un error.
+
+    Verificar tarjeta VIP: Llama a verificarTarjetaVIP para determinar si el usuario tiene una tarjeta VIP válida.
+
+    Calcular el precio final: Usa el método aplicarDescuento para calcular el precio final de la boleta después de aplicar un descuento si el usuario tiene una tarjeta VIP válida.
+
+    Actualizar el estado de la boleta: Cambia el estado de la boleta a 'no Disponible' en la colección Boletas.
+
+    Registrar el movimiento: Crea un documento de movimiento en la colección Movimientos con la información de la compra, incluyendo el precio final.
+
+    Devolver resultados: Devuelve un objeto que contiene la boleta actualizada y el movimiento registrado si la actualización y la inserción son exitosas.
+
+    Manejo de errores: Captura y muestra errores que puedan ocurrir durante el proceso de compra.
+
+    Cerrar la conexión: Finalmente, cierra la conexión a la base de datos en el bloque finally, asegurando que la conexión se cierre sin importar si la operación fue exitosa o si ocurrió un error.
+
+## Funcionalidad
+
+    Compra de Boleta: Permite comprar una boleta si está disponible, actualizando su estado y registrando la compra.
+
+    Verificación de Tarjeta VIP: Verifica si el usuario tiene una tarjeta VIP válida para aplicar un descuento en la boleta.
+
+    Aplicación de Descuento: Calcula el precio final de la boleta después de aplicar un descuento basado en la validez de la tarjeta VIP.
+    
+    Registro de Movimiento: Inserta un registro de la transacción en la colección Movimientos para fines de seguimiento o contabilidad.
+
+### Parámetros
+
+    idBoleta:
+        Tipo: string
+        Descripción: El identificador único de la boleta que se desea comprar. Se usa para buscar la boleta en la base de datos.
+
+    usuarioId:
+        Tipo: string
+        Descripción: El identificador único del usuario que está realizando la compra. Se usa para verificar la validez de la tarjeta VIP del usuario.
+
+    tipoMovimiento:
+        Tipo: string
+        Descripción: El tipo de movimiento que se registra en la colección Movimientos. Puede ser, por ejemplo, 'compra' o 'venta'.
+
+### Métodos Auxiliares verificarTarjetaVIP
+
+    Descripción: Verifica si un usuario tiene una tarjeta VIP válida.
+    Parámetros:
+
+        usuarioId: Identificador del usuario cuyo estado de tarjeta VIP se desea verificar.
+
+    Retorno: Devuelve true si el usuario tiene una tarjeta VIP, de lo contrario false.
+
+    Manejo de Errores: Captura errores que puedan ocurrir durante la consulta.
+
+### aplicarDescuento
+
+    Descripción: Calcula el precio con descuento si la tarjeta VIP del usuario es válida.
+    Parámetros:
+
+        precioOriginal: El precio original de la boleta.
+        tarjetaVIPValida: Booleano que indica si la tarjeta VIP del usuario es válida.
+
+    Retorno: El precio con descuento si la tarjeta VIP es válida, o el precio original si no lo es.
+
+    Lógica: Aplica un descuento del 20% si la tarjeta VIP es válida.
+
+### Detalles Adicionales
+
+    precioOriginal: El precio de la boleta antes de aplicar cualquier descuento. Se asume un valor predeterminado de 100 si no se encuentra un precio específico en la boleta.
+
+    precioFinal: El precio final de la boleta después de aplicar el descuento basado en la validez de la tarjeta VIP.

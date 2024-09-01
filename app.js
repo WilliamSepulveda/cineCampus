@@ -72,16 +72,55 @@ const Asientos = require("./js/module/asiento");
 //     });
 
 // // cancelar reserva
-const asientos = new Asientos();
-const idFuncion = '646a0c4f1b0f3b5d16c58222';
-const idLugar = 102;
-const idAsiento = '66d079643170ffb8c89f4bd0';
-const usuarioId = '66d078803170ffb8c89f4bc1';
+// const asientos = new Asientos();
+// const idFuncion = '646a0c4f1b0f3b5d16c58222';
+// const idLugar = 102;
+// const idAsiento = '66d079643170ffb8c89f4bd0';
+// const usuarioId = '66d078803170ffb8c89f4bc1';
 
-asientos.CancelarReserva(idFuncion, idAsiento, usuarioId)
+// asientos.CancelarReserva(idFuncion, idAsiento, usuarioId)
+//     .then(res => {
+//         console.log(res.mensaje, 'ID de la boleta cancelada:', res.boleta);
+//     })
+//     .catch(err => {
+//         console.error('Error al cancelar la reserva:', err);
+//     });
+
+
+// // aplicacion de descuentos para usuarios VIP 
+// const idBoleta = "66d07cde3170ffb8c89f4bd9"; 
+// const tipoMovimiento = {
+//     id: 2,
+//     nombre: "compra"
+// };
+// const newBoletas = new Boletas();
+// newBoletas.BuyBoletasDescuento(idBoleta, tipoMovimiento)
+//     .then(res => {
+//         console.log("Operación completada.");
+//         console.log("Detalles de la boleta:", res.boleta);
+//         console.log("Tipo de movimiento:", res.movimiento);
+//     })
+//     .catch(err => {
+//         console.error("Error en la operación:", err);
+//     });
+
+// // validar el tipo de tarjeta del usuario
+
+const idBoleta = "66d07cde3170ffb8c89f4bd9";
+const usuarioId = "66d078803170ffb8c89f4bc4"; // El ID del usuario
+const tipoMovimiento = {
+    id: 2,
+    nombre: "compra"
+};
+
+const newBoletas = new Boletas();
+
+newBoletas.verificacionUsuario(idBoleta, usuarioId, tipoMovimiento)
     .then(res => {
-        console.log(res.mensaje, 'ID de la boleta cancelada:', res.boleta);
+        console.log("Operación completada.");
+        console.log("Detalles de la boleta:", res.boleta);
+        console.log("Tipo de movimiento:", res.movimiento);
     })
     .catch(err => {
-        console.error('Error al cancelar la reserva:', err);
+        console.error("Error en la operación:", err);
     });
