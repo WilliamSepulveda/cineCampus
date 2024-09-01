@@ -144,3 +144,130 @@ Retorno de Datos: Devuelve un objeto con la información de la proyección y los
 ### Párametros 
 idFuncion (string): Identificador único de la proyección para la cual se desea consultar la disponibilidad de asientos. Debe ser una cadena que representa un ObjectId en MongoDB.
 idLugar (ObjectId): Identificador único del lugar (sala) donde se encuentra la proyección. Debe ser un ObjectId que representa el lugar en la base de datos.
+
+
+
+# Asignación de Asientos
+
+## API para Reservar Asientos
+
+## Descripcion
+
+La función ReservaAsientos se encarga de realizar la reserva de un asiento para una función específica en una base de datos MongoDB. La función realiza las siguientes operaciones:
+
+    1.Conexión a la Base de Datos: Abre una conexión a la base de datos.
+
+    2.Validación de la Función: Busca la función correspondiente en la colección de funciones. 
+    Si no se encuentra, lanza un error.
+
+    3.Validación del Asiento: Busca el asiento en la colección de asientos para el lugar especificado. Si no se encuentra, lanza un error.
+
+    4.Verificación de Reserva Existente: Comprueba si el asiento ya está reservado para la función especificada. Si ya está reservado, lanza un error.
+
+    5.Creación de Nueva Boleta: Crea un documento de boleta con la información de la reserva y lo inserta en la colección de boletas.
+
+    6.Actualización del Estado del Asiento: Cambia el estado del asiento a "Reservado" en la colección de asientos.
+
+    7.Retorno de Resultado: Devuelve un mensaje de éxito junto con el ID de la boleta insertada.
+
+    8.Manejo de Errores: Captura y muestra cualquier error que ocurra durante el proceso.
+
+    9.Cierre de Conexión: Cierra la conexión a la base de datos.
+
+### este es la consulta para que pueda verficar mas rápido la nueva boleta 
+```javascript
+db.Boleta.find({ _id: ObjectId("66d4ce37067e7dde801d032d") }, {})
+```
+### esta es la consulta para verficar el estado del asiento mas rapodamente por el id 
+```javascript	
+db.asiento.find({_id:ObjectId("66d079643170ffb8c89f4bd0")},{})
+```
+### Ejemplo de uso 
+```javascript
+const asientos = new Asientos();
+const idFuncion = '646a0c4f1b0f3b5d16c58222';
+const idLugar = 102;
+const idAsiento = '66d079643170ffb8c89f4bd0';
+const usuarioId = '66d078803170ffb8c89f4bc1';
+
+asientos.ReservaAsientos(idFuncion, idLugar, idAsiento, usuarioId)
+    .then(res => {
+        console.log(res.mensaje, 'ID de la boleta:', res.boleta);
+    })
+    .catch(err => {
+        console.error('Error al reservar asiento:', err);
+    });
+```
+
+### Funcionalidad
+La función ReservaAsientos permite a los usuarios reservar un asiento para una función específica. Asegura que el asiento no esté ya reservado y actualiza el estado del asiento y la base de datos con la nueva reserva. Proporciona retroalimentación sobre el éxito de la operación y maneja errores adecuadamente.
+
+### Párametros 
+idFuncion:
+
+    Tipo: string
+    Descripción: El ID de la función para la cual se desea reservar el asiento. Se utiliza para identificar la función en la colección de funciones.
+
+idLugar:
+
+    Tipo: number
+    Descripción: El ID del lugar donde se encuentra el asiento. Se utiliza para identificar la ubicación del asiento en la colección de asientos.
+
+idAsiento:
+
+    Tipo: string
+    Descripción: El ID del asiento que se desea reservar. Se utiliza para identificar el asiento en la colección de asientos.
+
+usuarioId:
+
+    Tipo: string
+    Descripción: El ID del usuario que realiza la reserva. Se utiliza para asociar la reserva con un usuario específico en la colección de boletas.
+
+## API para Cancelar Reserva de Asientos
+
+### Descripcion
+La función CancelarReserva se encarga de cancelar una reserva de asiento en una función específica. La función realiza las siguientes operaciones:
+
+    1. Conexión a la Base de Datos: Abre una conexión a la base de datos.
+    Verificación de Reserva Existente: Busca la reserva en la colección de boletas. Si no se encuentra, lanza un error.
+    2. Eliminación de la Reserva: Elimina el documento de boleta de la colección de boletas.
+    3. Actualización del Estado del Asiento: Cambia el estado del asiento a "Disponible" en la colección de asientos.
+    4. Retorno de Resultado: Devuelve un mensaje de éxito junto con el ID de la boleta cancelada.
+    5. Manejo de Errores: Captura y muestra cualquier error que ocurra durante el proceso.
+    6. Cierre de Conexión: Cierra la conexión a la base de datos.
+### Ejemplo de uso 
+```javascript	
+const asientos = new Asientos();
+const idFuncion = '646a0c4f1b0f3b5d16c58222';
+const idLugar = 102;
+const idAsiento = '66d079643170ffb8c89f4bd0';
+const usuarioId = '66d078803170ffb8c89f4bc1';
+
+asientos.CancelarReserva(idFuncion, idAsiento, usuarioId)
+    .then(res => {
+        console.log(res.mensaje, 'ID de la boleta cancelada:', res.boleta);
+    })
+    .catch(err => {
+        console.error('Error al cancelar la reserva:', err);
+    });
+
+```
+
+### Funcionalidad
+La función CancelarReserva permite a los usuarios cancelar una reserva de asiento existente para una función específica. Asegura que la reserva se elimine correctamente y que el asiento se marque como disponible nuevamente. Proporciona retroalimentación sobre el éxito de la operación y maneja errores adecuadamente.
+
+### Párametros 
+idFuncion:
+
+    Tipo: string
+    Descripción: El ID de la función para la cual se realizó la reserva.
+
+idAsiento:
+
+    Tipo: string
+    Descripción: El ID del asiento cuya reserva se desea cancelar.
+
+usuarioId:
+
+    Tipo: string
+    Descripción: El ID del usuario que realizó la reserva.
