@@ -88,33 +88,13 @@ const Asientos = require("./js/module/asiento");
 
 
 // // aplicacion de descuentos para usuarios VIP 
-const idBoleta = "66d07cde3170ffb8c89f4bd9"; 
-const tipoMovimiento = {
-    id: 2,
-    nombre: "compra"
-};
-const newBoletas = new Boletas();
-newBoletas.BuyBoletasDescuento(idBoleta, tipoMovimiento)
-    .then(res => {
-        console.log("Operación completada.");
-        console.log("Detalles de la boleta:", res.boleta);
-        console.log("Tipo de movimiento:", res.movimiento);
-    })
-    .catch(err => {
-        console.error("Error en la operación:", err);
-    });
-
-// // validar el tipo de tarjeta del usuario
-
-// const idBoleta = "66d07cde3170ffb8c89f4bd9";
-// const usuarioId = "66d078803170ffb8c89f4bc0"; 
+// const idBoleta = "66d07cde3170ffb8c89f4bd9"; 
 // const tipoMovimiento = {
 //     id: 2,
 //     nombre: "compra"
 // };
-
 // const newBoletas = new Boletas();
-// newBoletas.BuyBoletasDescuento(idBoleta, usuarioId, tipoMovimiento)
+// newBoletas.BuyBoletasDescuento(idBoleta, tipoMovimiento)
 //     .then(res => {
 //         console.log("Operación completada.");
 //         console.log("Detalles de la boleta:", res.boleta);
@@ -123,3 +103,24 @@ newBoletas.BuyBoletasDescuento(idBoleta, tipoMovimiento)
 //     .catch(err => {
 //         console.error("Error en la operación:", err);
 //     });
+
+// // validar el tipo de tarjeta del usuario
+
+const idBoleta = "66d07cde3170ffb8c89f4bd9";
+const usuarioId = "66d078803170ffb8c89f4bc4"; // El ID del usuario
+const tipoMovimiento = {
+    id: 2,
+    nombre: "compra"
+};
+
+const newBoletas = new Boletas();
+
+newBoletas.verificacionUsuario(idBoleta, usuarioId, tipoMovimiento)
+    .then(res => {
+        console.log("Operación completada.");
+        console.log("Detalles de la boleta:", res.boleta);
+        console.log("Tipo de movimiento:", res.movimiento);
+    })
+    .catch(err => {
+        console.error("Error en la operación:", err);
+    });
