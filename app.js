@@ -44,14 +44,29 @@ const Asientos = require("./js/module/asiento");
 //     });
 
 // // consulta de disponibilidad de asientos
+// const asientos = new Asientos();
+// const idFuncion = '646a0c4f1b0f3b5d16c58222';
+// const idLugar = 101;
+
+// asientos.consultarDisponibilidad(idFuncion, idLugar)
+//     .then(res => {
+//         console.log('Disponibilidad de asientos:', res);
+//     })
+//     .catch(err => {
+//         console.error('Error al consultar disponibilidad:', err);
+//     });
+
+// // reservar  asientos
 const asientos = new Asientos();
 const idFuncion = '646a0c4f1b0f3b5d16c58222';
-const idLugar = 101;
+const idLugar = 102;
+const idAsiento = '66d079643170ffb8c89f4bd0';
+const usuarioId = '66d078803170ffb8c89f4bc1';
 
-asientos.consultarDisponibilidad(idFuncion, idLugar)
+asientos.ReservaAsientos(idFuncion, idLugar, idAsiento, usuarioId)
     .then(res => {
-        console.log('Disponibilidad de asientos:', res);
+        console.log(res.mensaje, 'ID de la boleta:', res.boleta);
     })
     .catch(err => {
-        console.error('Error al consultar disponibilidad:', err);
+        console.error('Error al reservar asiento:', err);
     });

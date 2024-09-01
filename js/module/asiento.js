@@ -64,4 +64,63 @@ module.exports = class Asientos extends connect {
             await this.conection.close(); 
         }
     }
+    /**
+     * Reserva un asiento para una función específica y actualiza su estado a "Reservado".
+     * 
+     * @param {string} idFuncion - El ID de la función para la cual se desea reservar el asiento.
+     * @param {number} idLugar - El ID del lugar donde se encuentra el asiento.
+     * @param {string} idAsiento - El ID del asiento que se desea reservar.
+     * @param {string} usuarioId - El ID del usuario que realiza la reserva.
+     * 
+     * @returns {Promise<Object>} - Un objeto con un mensaje de éxito y el ID de la boleta insertada.
+     * 
+     * @throws {Error} - Lanza errores si la función o el asiento no se encuentran, si el asiento ya está reservado,
+     *                   o si ocurre un problema durante la inserción o actualización en la base de datos.
+    */
+    async ReservaAsientos(idFuncion, idLugar, idAsiento, usuarioId) {
+        try {
+            await this.open();
+            const db = this.db;
+    
+            const funcion = await db.collection(this.collectionFunciones).findOne({ _id: new ObjectId(idFuncion) });
+            if (!funcion) throw new Error('Función no encontrada');
+    
+            const asiento = await db.collection(this.collectionAsientos).findOne({ _id: new ObjectId(idAsiento), id_lugar: idLugar });
+            if (!asiento) throw new Error('Asiento no encontrado en el lugar especificado');
+    
+            const boletaExistente = await db.collection(this.collectionBoletas).findOne({ id_movimiento: new ObjectId(idFuncion), id_asiento: new ObjectId(idAsiento) });
+            if (boletaExistente) throw new Error('Asiento ya reservado');
+    
+            const nuevaBoleta = {
+                id_movimiento: new ObjectId(idFuncion),
+                id_asiento: new ObjectId(idAsiento),
+                usuario_id: new ObjectId(usuarioId),
+                fecha_reserva: new Date(),
+                asiento_codigo: asiento.codigo.asiento,
+                asiento_zona: asiento.codigo.zona,
+                tipo_de_fila: asiento.tipo_de_fila.nombre,
+                incremento: asiento.tipo_de_fila.incremento
+            };
+    
+            const result = await db.collection(this.collectionBoletas).insertOne(nuevaBoleta);
+    
+            // Actualizar el estado del asiento a 'Reservado'
+            await db.collection(this.collectionAsientos).updateOne(
+                { _id: new ObjectId(idAsiento) },
+                { $set: { estado: 'Reservado' } }
+            );
+    
+            return {
+                mensaje: 'Reserva exitosa',
+                boleta: result.insertedId
+            };
+        } catch (err) {
+            console.error('Error al reservar asiento:', err);
+            throw err;
+        } finally {
+            await this.conection.close();
+        }
+    }
+    
+
 };
