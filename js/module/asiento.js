@@ -121,6 +121,49 @@ module.exports = class Asientos extends connect {
             await this.conection.close();
         }
     }
-    
+    /**
+     * Cancela una reserva de asiento para una función específica.
+     * 
+     * @param {string} idFuncion - El ID de la función para la cual se realizó la reserva.
+     * @param {string} idAsiento - El ID del asiento cuya reserva se desea cancelar.
+     * @param {string} usuarioId - El ID del usuario que realizó la reserva.
+     * 
+     * @returns {Promise<Object>} - Un objeto con un mensaje de éxito y el ID de la boleta cancelada.
+     * 
+     * @throws {Error} - Lanza un error si la función, el asiento, o la reserva no se encuentran.
+     */
+    async CancelarReserva(idFuncion, idAsiento, usuarioId) {
+        try {
+            await this.open();
+            const db = this.db;
 
+            
+            const boleta = await db.collection(this.collectionBoletas).findOne({ 
+                id_movimiento: new ObjectId(idFuncion),
+                id_asiento: new ObjectId(idAsiento),
+                usuario_id: new ObjectId(usuarioId)
+            });
+            if (!boleta) throw new Error('Reserva no encontrada');
+
+            const result = await db.collection(this.collectionBoletas).deleteOne({
+                _id: boleta._id
+            });
+            if (result.deletedCount === 0) throw new Error('No se pudo cancelar la reserva');
+
+            await db.collection(this.collectionAsientos).updateOne(
+                { _id: new ObjectId(idAsiento) },
+                { $set: { estado: 'Disponible' } }
+            );
+
+            return {
+                mensaje: 'Reserva cancelada exitosamente',
+                boleta: boleta._id
+            };
+        } catch (err) {
+            console.error('Error al cancelar la reserva:', err);
+            throw err;
+        } finally {
+            await this.conection.close();
+        }
+    }
 };
