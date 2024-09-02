@@ -1,10 +1,12 @@
 const { ObjectId } = require('mongodb');
 const connect = require('../../db/connect'); 
+const nodemailer = require('nodemailer');
 
 module.exports = class Boletas extends connect {
     collectionBoletas;
     collectionMovimientos;
     collectionAsientos;
+    collectionConfirmaciones
 
     constructor() {
         super();
@@ -12,6 +14,7 @@ module.exports = class Boletas extends connect {
         this.collectionMovimientos = 'movimientos'; 
         this.collectionUsuarios = 'cliente';
         this.collectionAsientos = 'asiento';
+        this.collectionConfirmaciones = 'cliente';
     }
     /**
      * Permite la compra de una boleta para una película específica en una fecha y hora determinada,
@@ -327,5 +330,105 @@ module.exports = class Boletas extends connect {
      */
     async procesarPago(monto) {
         return new Promise((resolve) => setTimeout(() => resolve(true), 1000));
-}
-};    
+    }
+    /**
+     * Procesa la compra de una boleta y registra la confirmación de la compra en la base de datos.
+     * @param {string} idBoleta - El identificador de la boleta que se desea comprar.
+     * @param {string} tipoMovimiento - El tipo de movimiento a registrar en la colección de movimientos.
+     * @param {string} usuarioId - El identificador del usuario que realiza la compra.
+     * @returns {Promise<Object>} - Un objeto con los detalles de la boleta, el tipo de movimiento, los detalles del pago y los datos del usuario.
+     * @throws {Error} - Lanza un error si la boleta no está disponible, el pago no se puede procesar, o hay problemas al realizar la compra.
+     */
+    async BuyBoletasConfirmacionUsuario(idBoleta, tipoMovimiento, usuarioId) {
+        try {
+            await this.open(); 
+            const collectionBoletas = this.db.collection(this.collectionBoletas);
+            const collectionMovimientos = this.db.collection(this.collectionMovimientos);
+            const collectionAsientos = this.db.collection(this.collectionAsientos);
+            const collectionConfirmaciones = this.db.collection(this.collectionConfirmaciones);
+            const collectionUsuarios = this.db.collection(this.collectionUsuarios); // Colección de usuarios
+
+            const dbBoleta = await collectionBoletas.findOne({ _id: new ObjectId(idBoleta) });
+
+            if (!dbBoleta || !dbBoleta.estado.includes('Disponible')) {
+                throw new Error('Boleta no disponible');
+            }
+
+            const pagoExitoso = await this.procesarPago(dbBoleta.precio);
+
+            if (!pagoExitoso) {
+                throw new Error('El pago no se pudo procesar');
+            }
+
+            const resultadoBoleta = await collectionBoletas.updateOne(
+                { _id: new ObjectId(idBoleta) },
+                { $set: { estado: ["no Disponible"] } }
+            );
+
+            if (resultadoBoleta.modifiedCount > 0) {
+                const boletaActualizada = await collectionBoletas.findOne({ _id: new ObjectId(idBoleta) });
+
+                if (dbBoleta.id_asiento) {
+                    await collectionAsientos.updateOne(
+                        { _id: new ObjectId(dbBoleta.id_asiento) },
+                        { $set: { estado: "no Disponible" } }
+                    );
+                }
+
+                const movimientos = {
+                    codigo_cliente: usuarioId,
+                    id_funcion: new ObjectId(idBoleta),
+                    tipo_movimiento: tipoMovimiento
+                };
+
+                await collectionMovimientos.insertOne(movimientos);
+
+                // Obtener los datos del usuario
+                const usuario = await collectionUsuarios.findOne({ _id: new ObjectId(usuarioId) });
+
+                // Registro de la confirmación
+                const confirmacion = {
+                    id_usuario: usuarioId,
+                    id_boleta: new ObjectId(idBoleta),
+                    fecha_confirmacion: new Date().toISOString(),
+                    detalles_boleta: boletaActualizada,
+                    detalles_pago: {
+                        idTransaccion: "TX123456789",
+                        estadoPago: "completado",
+                        metodoPago: "tarjeta",
+                        monto: dbBoleta.precio,
+                        fechaPago: new Date().toISOString()
+                    }
+                };
+
+                await collectionConfirmaciones.insertOne(confirmacion);
+
+                console.log('Boleta encontrada:', boletaActualizada);
+                console.log('Compra realizada exitosamente.');
+                console.log('Datos del usuario:', usuario); 
+
+                return {
+                    boleta: boletaActualizada,
+                    movimiento: tipoMovimiento,
+                    pago: confirmacion.detalles_pago,
+                    usuario: usuario
+                };
+            } else {
+                throw new Error('Hubo un problema al realizar la compra');
+            }
+        } catch (err) {
+            console.log('Error al finalizar la compra', err);
+            throw err; 
+        } finally {
+            await this.conection.close(); 
+        }
+    }
+    /**
+     * Simula el procesamiento del pago.
+     * @param {number} monto - El monto a procesar.
+     * @returns {Promise<boolean>} - Una promesa que se resuelve en true si el pago es exitoso.
+     */
+    async procesarPago(monto) {
+        return new Promise((resolve) => setTimeout(() => resolve(true), 1000));
+    }
+};
