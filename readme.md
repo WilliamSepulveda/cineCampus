@@ -430,3 +430,166 @@ El método verificacionUsuario se encarga de realizar la compra de una boleta, v
     precioOriginal: El precio de la boleta antes de aplicar cualquier descuento. Se asume un valor predeterminado de 100 si no se encuentra un precio específico en la boleta.
 
     precioFinal: El precio final de la boleta después de aplicar el descuento basado en la validez de la tarjeta VIP.
+
+
+
+# Compras en Línea
+
+## API para Procesar Pagos
+
+### Descripcion
+La función BuyBoletas realiza el proceso de compra de una boleta, que incluye la verificación de disponibilidad, el procesamiento del pago, la actualización del estado de la boleta y el asiento, y el registro de un movimiento en la base de datos. Además, maneja el cierre de la conexión con la base de datos y captura errores que puedan ocurrir durante el proceso.
+
+### Ejemplo de uso 
+```javascript
+const idBoleta = "66d07cde3170ffb8c89f4bd9"; 
+const tipoMovimiento = {
+    id: 2,
+    nombre: "compra"
+};
+
+const newBoletas = new Boletas();
+
+newBoletas.BuyBoletas(idBoleta, tipoMovimiento)
+    .then(res => {
+        console.log("Operación completada.");
+        console.log("Detalles de la boleta:", res.boleta);
+        console.log("Tipo de movimiento:", res.movimiento);
+        console.log("Detalles del pago:", res.pago);
+    })
+    .catch(err => {
+        console.error("Error en la operación:", err);
+    });
+```
+### Funcionalidad
+Abrir Conexión: La función comienza abriendo una conexión con la base de datos.
+
+Colecciones: Se obtienen referencias a las colecciones Boletas, Movimientos, y Asientos de la base de datos.
+
+Verificar Disponibilidad de la Boleta: Se busca la boleta por su idBoleta. Si la boleta no está disponible o no existe, se lanza un error.
+
+Procesar Pago: Se llama al método procesarPago para procesar el pago de la boleta. Si el pago falla, se lanza un error.
+
+Actualizar Estado de la Boleta: Si el pago es exitoso, se actualiza el estado de la boleta a "no Disponible".
+
+Actualizar Estado del Asiento (si aplica): Si la boleta tiene un id_asiento, se actualiza el estado del asiento correspondiente a "no Disponible". Si no se encuentra el asiento, se lanza un error.
+
+Registrar Movimiento: Se inserta un nuevo registro en la colección de movimientos con la información relevante de la transacción.
+
+Detalles del Pago: Se crea un objeto con detalles del pago que incluye el ID de transacción, el estado del pago, el método de pago, el monto y la fecha.
+
+Devolver Resultado: Se devuelven los detalles de la boleta actualizada, el tipo de movimiento y los detalles del pago.
+
+Manejo de Errores y Cierre de Conexión: En caso de error, se captura y se lanza nuevamente. Finalmente, se cierra la conexión con la base de datos.
+
+### Párametros 
+
+idBoleta: Identificador único de la boleta que se desea comprar. Se usa para buscar la boleta en la colección Boletas.
+
+tipoMovimiento: Tipo de movimiento que se registrará en la colección Movimientos. Puede representar el tipo de transacción realizada, como una compra.
+
+
+## API para Confirmación de Compra
+
+## Ejecute este comando para instalar nodemailer que facilita el envío de correos electrónicos a los usuarios.
+```javascript
+npm install nodemailer
+```
+### Descripción 
+Este código define dos métodos asíncronos en una clase. Uno es procesarPago, que simula el procesamiento de un pago, y el otro es BuyBoletasConfirmacionUsuario, que maneja el proceso de compra de una boleta y registra la confirmación de la compra en la base de datos.
+
+procesarPago(monto):
+    Simula el procesamiento de un pago en línea.
+    Utiliza una promesa que se resuelve después de un segundo, simulando un proceso de pago exitoso.
+
+BuyBoletasConfirmacionUsuario(idBoleta, tipoMovimiento, usuarioId):
+    Maneja la compra de una boleta, actualiza el estado de la boleta y el asiento, y registra la confirmación de la compra en la base de datos.
+    Incluye la verificación de disponibilidad de la boleta, el procesamiento del pago, la actualización del estado de la boleta y el asiento, y la inserción de registros en las colecciones correspondientes.
+
+
+
+### Ejemplo de uso 
+```javascript
+const idBoleta = "66d07cde3170ffb8c89f4bd9";
+const usuarioId = "66d078803170ffb8c89f4bc0";
+const tipoMovimiento = {
+    id: 2,
+    nombre: "compra"
+};
+// Crear una instancia de la clase Boletas
+const boletas = new Boletas();
+boletas.BuyBoletasConfirmacionUsuario(idBoleta, tipoMovimiento, usuarioId)
+    .then(res => {
+        console.log("Operación completada.");
+        console.log("Detalles de la boleta:", res.boleta);
+        console.log("Tipo de movimiento:", res.movimiento);
+        console.log("Detalles del pago:", res.pago);
+        console.log("Datos de usuario", res.usuario);
+
+        // Confirmación enviada al usuario
+        console.log("Confirmación de compra enviada al usuario.");
+    })
+    .catch(err => {
+        console.error("Error en la operación:", err);
+    });
+```
+### Funcionalidad
+procesarPago:
+
+Simula el procesamiento del pago y siempre retorna true después de un segundo.
+
+BuyBoletasConfirmacionUsuario:
+
+Abrir conexión: Abre la conexión con la base de datos.
+
+Obtener Colecciones: Obtiene referencias a las colecciones Boletas, Movimientos, Asientos, Confirmaciones, y Usuarios.
+
+Buscar Boleta: Busca la boleta en la colección Boletas.
+
+Verificar Disponibilidad: Verifica si la boleta está disponible.
+
+Procesar Pago: Llama a procesarPago para procesar el pago de la boleta.
+
+Actualizar Estado de la Boleta: Actualiza el estado de la boleta a "no Disponible".
+
+Actualizar Estado del Asiento: Si la boleta tiene un id_asiento, actualiza el estado del asiento a "no Disponible".
+
+Registrar Movimiento: Inserta un registro de movimiento en la colección Movimientos.
+
+Obtener Datos del Usuario: Obtiene los datos del usuario que realiza la compra.
+
+Registrar Confirmación: Inserta un registro de confirmación en la colección Confirmaciones.
+
+Devolver Resultado: Devuelve un objeto con los detalles de la boleta, el tipo de movimiento, los detalles del pago y los datos del usuario.
+
+Manejo de Errores: Captura y lanza errores si ocurren durante el proceso.
+
+Cerrar Conexión: Asegura que la conexión a la base de datos se cierre al final del proceso
+### Párametros 
+procesarPago(monto):
+
+monto: El monto del pago que se está procesando. Este parámetro se utiliza para simular el procesamiento del pago.
+
+BuyBoletasConfirmacionUsuario(idBoleta, tipoMovimiento, usuarioId):
+
+idBoleta: El identificador de la boleta que se desea comprar. Utilizado para buscar la boleta en la colección.
+
+tipoMovimiento: El tipo de movimiento que se registrará en la colección de movimientos. Representa el tipo de transacción realizada.
+
+usuarioId: El identificador del usuario que realiza la compra. Se utiliza para registrar el movimiento y obtener los datos del usuario en la colección Usuarios.
+
+### Resultado esperado 
+
+```javascript
+Datos de usuario {
+  _id: new ObjectId('66d078803170ffb8c89f4bc0'),
+  nombre: 'Juan',
+  apellido: 'Pérez',
+  nick: 'juanito',
+  email: 'juan.perez@example.com',
+  telefono: [ '1234567890', '0987654321' ],
+  tipos_de_categoria: [ 'Regular' ]
+}
+Confirmación de compra enviada al usuario.
+```
+
