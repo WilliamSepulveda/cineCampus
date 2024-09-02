@@ -4,12 +4,15 @@ const connect = require('../../db/connect');
 module.exports = class Boletas extends connect {
     collectionBoletas;
     collectionMovimientos;
+    collectionAsientos;
 
     constructor() {
         super();
         this.collectionBoletas = 'Boleta';
         this.collectionMovimientos = 'movimientos'; 
-        this.collectionUsuarios = 'cliente';    }
+        this.collectionUsuarios = 'cliente';
+        this.collectionAsientos = 'asiento';
+    }
     /**
      * Permite la compra de una boleta para una película específica en una fecha y hora determinada,
      * si la boleta está disponible, y registra el tipo de movimiento en la colección de movimientos.
@@ -234,4 +237,95 @@ module.exports = class Boletas extends connect {
             await this.conection.close(); 
         }
     }
+    /**
+     * Realiza la compra de una boleta y procesa el pago en línea.
+     * 
+     * @param {string} idBoleta - El ID de la boleta a comprar.
+     * @param {Object} tipoMovimiento - El tipo de movimiento que describe la transacción.
+     * @param {number} tipoMovimiento.id - El ID del tipo de movimiento.
+     * @param {string} tipoMovimiento.nombre - El nombre del tipo de movimiento.
+     * @returns {Promise<Object>} Un objeto que contiene detalles de la boleta actualizada, el tipo de movimiento, y los detalles del pago.
+     * @throws {Error} Si la boleta no está disponible, el pago falla, o hay un problema al actualizar la boleta.
+     */
+    async BuyBoletas(idBoleta, tipoMovimiento) {
+    try {
+        await this.open(); 
+        const collectionBoletas = this.db.collection(this.collectionBoletas);
+        const collectionMovimientos = this.db.collection(this.collectionMovimientos);
+        const collectionAsientos = this.db.collection(this.collectionAsientos);
+
+        const dbBoleta = await collectionBoletas.findOne({ _id: new ObjectId(idBoleta) });
+
+        if (!dbBoleta || !dbBoleta.estado.includes('Disponible')) {
+            throw new Error('Boleta no disponible');
+        }
+
+        const pagoExitoso = await this.procesarPago(dbBoleta.precio);
+
+        if (!pagoExitoso) {
+            throw new Error('El pago no se pudo procesar');
+        }
+
+        const resultadoBoleta = await collectionBoletas.updateOne(
+            { _id: new ObjectId(idBoleta) },
+            { $set: { estado: ["no Disponible"] } }
+        );
+
+        if (resultadoBoleta.modifiedCount > 0) {
+            const boletaActualizada = await collectionBoletas.findOne({ _id: new ObjectId(idBoleta) });
+
+            if (dbBoleta.id_asiento) {
+                const resultadoAsiento = await collectionAsientos.updateOne(
+                    { id: dbBoleta.id_asiento }, 
+                    { $set: { estado: "no Disponible" } }
+                );
+
+                if (resultadoAsiento.matchedCount === 0) {
+                    throw new Error('Asiento no encontrado');
+                }
+            }
+
+            const movimiento = {
+                codigo_cliente: 124, 
+                id_funcion: new ObjectId(idBoleta),
+                tipo_movimiento: tipoMovimiento
+            };
+
+            await collectionMovimientos.insertOne(movimiento);
+
+            console.log('Boleta encontrada:', boletaActualizada);
+            console.log('Compra realizada exitosamente.');
+
+            const detallesPago = {
+                idTransaccion: "TX123456789",
+                estadoPago: "completado",
+                metodoPago: "tarjeta",
+                monto: dbBoleta.precio,
+                fechaPago: new Date().toISOString()
+            };
+
+            return {
+                boleta: boletaActualizada,
+                movimiento: tipoMovimiento,
+                pago: detallesPago
+            };
+        } else {
+            throw new Error('Hubo un problema al realizar la compra');
+        }
+        } catch (err) {
+            console.log('Error al finalizar la compra', err);
+            throw err; 
+        } finally {
+            await this.conection.close(); 
+        }
+    }
+    /**
+     * Simula el procesamiento de un pago en línea.
+     * 
+     * @param {number} monto - El monto a pagar.
+     * @returns {Promise<boolean>} Una promesa que se resuelve en true si el pago fue exitoso.
+     */
+    async procesarPago(monto) {
+        return new Promise((resolve) => setTimeout(() => resolve(true), 1000));
+}
 };    
