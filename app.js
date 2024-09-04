@@ -173,7 +173,7 @@ const val = {
     nick: 'cachetes',
     pass: '0123456789'
 };
-const rol = 'userAdmin';
+const rol = 'administrador';
 
 const usuario = new Usuario();
 usuario.initialize()  // Inicializar y conectar a la base de datos

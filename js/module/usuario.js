@@ -4,7 +4,7 @@ const connect = require("../../db/connect");
 /**
  * Clase Usuario que extiende de la clase Connect para gestionar operaciones relacionadas con usuarios.
  */
-class Usuario extends Connect {
+class Usuario extends connect {
     /**
      * Constructor de la clase Usuario.
      * Inicializa la referencia a la colección de usuarios como `null`.
