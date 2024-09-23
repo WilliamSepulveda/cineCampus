@@ -1,3 +1,42 @@
+# CineCampusLands
+
+## Descripción
+CineCampusLands es una aplicación web construida con Node.js y Express para la gestión de usuarios.
+
+## Requisitos previos
+Asegúrate de tener instalado lo siguiente en tu máquina:
+
+- [Node.js](https://nodejs.org/) (v14 o superior)
+- [npm](https://www.npmjs.com/get-npm) (se instala automáticamente con Node.js)
+
+## Instalación
+
+1. **Clonar el repositorio**
+
+   ```bash
+   git clone https://github.com/tu_usuario/cinecampuslands.git
+   cd cinecampuslands
+
+
+
+# instalación
+
+```
+npm install
+```
+
+### instalación de express
+    npm install express
+
+### ejecutar o correr la aplicacion 
+
+    npm run start
+
+
+
+
+
+
 # Requisitos Funcionales
 
 # seleccion de peliculas 
