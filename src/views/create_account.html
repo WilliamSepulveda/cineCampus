@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create account</title>
+    <link rel="stylesheet" href="../css/create_account.css">
+    <script type="module" defer src="../js/create_account.js"></script>
+    
+</head>
+<body>
+  <div class="container">
+    <img class="estrella" src="../storage/img/Star 8.svg" alt="Estrella">
+    <a href="/">
+      <img class="retroceso" src="../storage/img/Back.svg" alt="Retroceder">
+    </a>
+    <div class="content-container">
+      <div class="form-container">
+        <form action="/user/v1" method="POST" class="login-form">
+          <h2 class="login-title">Create account</h2>
+
+          <div class="input-field">
+            <label for="nick">Username:</label>
+            <input type="text" id="nick" name="nick" required placeholder="your Username" value="williamj"> 
+          </div>
+
+          <div class="input-field">
+            <label for="email">Email address:</label>
+            <input type="email" id="email" name="email" required placeholder="Ingresa tu correo" oninput="validateEmail()" value="3209204930w@gmail.com"> 
+            <img id="email-verified-icon" src="../storage/img/on.svg" alt="Verificado" style="display: none;">
+          </div>
+
+          <div class="input-field">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required placeholder="Ingresa tu contraseña" value="123456789">
+            <img id="toggle-password" src="../storage/img/show.png" alt="Mostrar contraseña" onclick="togglePasswordVisibility()">
+          </div>
+
+          <div class="forgot-password">
+            <a href="#">I accept the terms and privacy policy</a>
+          </div>
+
+          <div class="button-container">
+            <button type="submit" class="sign-in">Log in</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="footer">
+      <p>Don’t have an account?</p><br>
+      <p class="sign_up">Sign up</p>
+    </div>
+  </div>
+</body>
+</html>

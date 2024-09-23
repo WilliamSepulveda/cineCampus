@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log in</title>
+    <link rel="stylesheet" href="../css/log_in.css">
+    <script type="module" defer src="../js/log_in.js"></script>
+</head>
+<body>
+  <div class="container">
+    <img class="estrella" src="../storage/img/Star 8.svg" alt="Estrella">
+    <a href="/">
+      <img class="retroceso" src="../storage/img/Back.svg" alt="Retroceder">
+    </a>
+    <div class="content-container">
+      <div class="form-container">
+        <form id="login_form" action="/user/v1" method="GET" class="login-form">
+          <h2 class="login-title">Log In</h2>
+
+          <div class="input-field">
+            <label for="email">Email address:</label>
+            <input type="email" id="email" name="email" required placeholder="Ingresa tu correo"> 
+            <img id="email-verified-icon" src="../storage/img/on.svg" alt="Verificado" style="display: none;">
+          </div>
+
+          <div class="input-field">
+            <label for="password">Password:</label>
+            <img id="toggle-password" src="../storage/img/show.png" alt="Mostrar contraseña">
+            <input type="password" id="password" name="password" required placeholder="Ingresa tu contraseña">
+          </div>
+
+          <div class="forgot-password">
+            <a href="#">Forgot password?</a>
+          </div>
+
+          <div class="button-container">
+            <button type="submit" class="sign-in">Iniciar Sesión</button>
+          </div>
+
+          <div class="separator">
+            <span>or log in</span>
+          </div>
+
+          <div class="social-login">
+            <a href="facebook.html" class="social-btn facebook">
+              <img src="../storage/img/Facebook.svg" alt="Facebook">
+            </a>
+            <a href="google.html" class="social-btn google">
+              <img src="../storage/img/Google.svg" alt="Google">
+            </a>
+            <a href="apple.html" class="social-btn apple">
+              <img src="../storage/img/Apple.svg" alt="Apple">
+            </a>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="footer">
+      <p>Don’t have an account?</p><br>
+      <p class="sign_up">Sign up</p>
+    </div>
+  </div>
+</body>
+</html>
