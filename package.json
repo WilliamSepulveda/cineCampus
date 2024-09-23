@@ -4,7 +4,8 @@
   "main": "app.js",
   "type": "commonjs",
   "scripts": {
-    "dev": "node --watch --env-file .env app.js"
+    "dev": "node --watch --env-file .env app.js",
+    "start": "node app.js" 
   },
   "keywords": [],
   "author": "Willliam Jair Sepulveda Carrillo",
@@ -12,7 +13,8 @@
   "description": "",
   "dependencies": {
     "mongodb": "^6.8.0",
-    "nodemailer": "^6.9.14"
+    "nodemailer": "^6.9.14",
+    "express": "^4.18.2" 
   },
   "devDependencies": {
     "@types/node": "^22.5.0",
