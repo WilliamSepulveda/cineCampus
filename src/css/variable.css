@@ -1,0 +1,4 @@
+:root{
+    background-image: linear-gradient(100deg, #5b5858, #062e3f);
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+}

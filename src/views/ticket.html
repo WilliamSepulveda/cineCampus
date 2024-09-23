@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket</title>
+    <link rel="stylesheet" href="../css/ticket.css">
+    <!-- Añadir el CDN de JsBarcode -->
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+</head>
+<body>
+    <header class="header">
+        <a href="../views/oder_summary.html">
+            <img id="back" src="../storage/img/Back.svg" alt="back icon">
+        </a>
+        <h1>Cinema Selection</h1>
+        <div class="options">
+            <img src="../storage/img/more-vertical.svg" alt="more icon">
+        </div>
+    </header>
+
+    <main class="ticket-container">
+        <div class="ticket">
+            <!-- Movie Poster -->
+            <div class="movie-poster">
+                <img src="../storage/img/alien.jpg" alt="Alien Romulus Poster">
+            </div>
+
+            <div class="ticket-details">
+                <h2>Alien Romulus</h2>
+                <p>Show this ticket at the entrance</p>
+
+                <div class="cinema-info">
+                    <div class="cinema-item">
+                        <p><strong>Cinema:</strong></p>
+                        <h2>Hartono Mall 12</h2>
+                        <img src="../storage/img/3D.jpg" alt="3D Icon" class="cinema-format">
+                    </div>
+                    
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <p><strong>Date:</strong></p>
+                            <h2>Sun, Feb 12th 2023</h2>
+                        </div>
+                        <div class="info-item">
+                            <p><strong>Time:</strong></p>
+                            <h2>13:00</h2>
+                        </div>
+                        <div class="info-item">
+                            <p><strong>Seat:</strong></p>
+                            <h2>C5</h2>
+                        </div>
+                        <div class="info-item">
+                            <p><strong>Order ID:</strong></p>
+                            <h2 id="order-id">12345678</h2> <!-- El ID dinámico para el código de barras -->
+                        </div>
+                    </div>
+
+                    <p><strong>Cinema Hall #:</strong></p>
+                    <h2>Cinema A</h2><br>
+                    <p><strong>Cost:</strong></p>
+                    <h2>$26.99</h2>
+                </div>
+            </div>
+
+          <div class="barcode">
+                <svg id="barcode"></svg>
+            </div>
+        </div>
+    </main>
+    <script>
+        
+        var orderId = document.getElementById('order-id').innerText;
+
+        JsBarcode("#barcode", orderId, {
+            format: "CODE128",    
+            lineColor: "#000",   
+            width: 2,             
+            height: 50,          
+            displayValue: false    
+        });
+    </script>
+</body>
+</html>
