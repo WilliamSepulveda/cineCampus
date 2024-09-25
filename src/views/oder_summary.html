@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Summary</title>
+    <link rel="stylesheet" href="../css/order_summary.css">
+    <script type="module"  defer src="../js/order_summary.js"></script>
+</head>
+<body>
+    <header class="header">
+        <a href="../views/choose_seat.html">
+            <img id="back" src="../storage/img/Back.svg" alt="Back icon">
+        </a>
+        <h1>Order Summary</h1>
+        <div class="options">
+            <img src="../storage/img/more-vertical.svg" alt="More options">
+        </div>
+    </header>
+
+    <main class="summary-container">
+        <section class="movie-info">
+            <img src="../storage/img/alien.jpg" alt="Puss in Boots Movie Poster" class="movie-poster">
+            <div class="movie-details">
+                <h2>Alien Romulus</h2>
+                <p>Accion</p>
+                <p><strong>HARTONO MALL</strong></p>
+                <p>Sun, 12 Feb 2023. 13:00</p>
+            </div>
+        </section>
+
+        <section class="order-info">
+            <p><strong>ORDER NUMBER: 123456786</strong></p>
+            <div class="ticket-details">
+                <div class="detail-item">
+                    <span>1 TICKET</span>
+                    <span>C5</span>
+                </div>
+                <div class="detail-item">
+                    <span>REGULAR SEAT</span>
+                    <span>$24,99 x 3</span>
+                </div>
+                <div class="detail-item">
+                    <span>SERVICE FEE</span>
+                    <span>$1,99 x 1</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="payment-method">
+            <h3>Payment method</h3>
+            <div class="payment-card">
+                <img src="../storage/img/mastercard-2-logo-svgrepo-com.svg" alt="Visa logo" class="card-logo">
+                <span>**** **** **** 0174</span>
+                <input type="radio" name="payment" value="visa">
+            </div>
+
+            <!-- Button to toggle payment options -->
+            <button id="toggle-payment-options" class="toggle-button">Choose a different method</button>
+
+            <!-- Hidden payment options -->
+            <div id="payment-options" class="payment-options hidden">
+                <div class="payment-card">
+                    <img src="../storage/img/visa-svgrepo-com.svg" alt="Visa logo" class="card-logo">
+                    <span>**** **** **** 1234</span>
+                    <input type="radio" name="payment" value="visa">
+                </div>
+                <div class="payment-card">
+                    <img src="../storage/img/paypal-svgrepo-com.svg" alt="PayPal logo" class="card-logo">
+                    <span>PayPal</span>
+                    <input type="radio" name="payment" value="paypal">
+                </div>
+            </div>
+
+            <div class="caducidad">
+                <p class="payment-timer">Complete your payment in <span class="timer">04:59</span></p>
+            </div>
+        </section>
+
+        <section class="purchase">
+            <button class="buy-ticket">Buy Ticket</button>
+        </section>
+    </main>
+
+    <script src="../js/payment.js"></script>
+</body>
+</html>
