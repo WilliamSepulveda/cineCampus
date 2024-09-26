@@ -26,12 +26,12 @@ html, body {
     position: relative;
 }
 
-.estrella {
+.ojitos {
     position: absolute;
-    width: 70px;
+    width: 120px;
     height: auto;
-    left: 80%;
-    margin-top: 28px;
+    left: 70%;
+    margin-top: 32px;
     animation: colorChange 5s infinite;
 }
 
@@ -149,11 +149,13 @@ html, body {
     border-radius: 5px;
     font-size: 1rem;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 3s ease;
 }
 
 .sign-in:hover {
-    background-color: #ce0505;
+    transform: translateY(-10px);
+    box-shadow: 0px 30px 45px rgba(238, 4, 4, 0.2);
+    background: linear-gradient(45deg, #6f4242, #e40808);
 }
 
 .footer {
@@ -170,7 +172,6 @@ html, body {
     color: rgb(224, 12, 12);
 }
 
-/* Media queries para móviles */
 @media (max-width: 600px) {
     .container {
         width: 90%;
@@ -198,8 +199,8 @@ html, body {
         font-size: 0.875rem;
     }
 
-    .estrella {
-        width: 50px;
+    .ojitos {
+        width: 80px;
     }
 
     .retroceso {

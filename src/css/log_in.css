@@ -26,11 +26,11 @@ html, body {
     position: relative;
 }
 
-.estrella {
+.ojitos {
     position: absolute;
-    width: 70px;
+    width: 120px;
     height: auto;
-    left: 80%;
+    left: 60%;
     margin-top: 28px;
     animation: colorChange 5s infinite;
     
@@ -47,7 +47,7 @@ html, body {
 
 @keyframes colorChange {
     0% {
-        filter: hue-rotate(0deg);
+        filter: hue-rotate(10deg);
     }
     25% {
         filter: hue-rotate(60deg);
@@ -71,19 +71,11 @@ html, body {
 }
 
 @media (min-width: 768px) {
-    .estrella {
+    .ojitos {
         width: 8vw;
         transform: translate(15%, -15%);
     }
 }
-
-@media (max-width: 480px) {
-    .estrella {
-        width: 15vw;
-        transform: translate(5%, -5%);
-    }
-}
-
 
 .form-container {
     margin-top: 10vh;
@@ -169,11 +161,13 @@ html, body {
     border-radius: 5px;
     font-size: 1rem;
     cursor: pointer;
-    transition: background-color 0.3s ease;
 }
 
 .sign-in:hover {
-    background-color: #c30404;
+    transition: background-color 1s ease;
+    transform: translateY(-10px);
+    box-shadow: 0px 30px 45px rgba(238, 4, 4, 0.2);
+    background: linear-gradient(45deg, #6f4242, #e40808);
 }
 
 .separator {
@@ -223,8 +217,9 @@ html, body {
 }
 
 .social-btn:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    transform: translateY(-10px);
+    box-shadow: 0px 30px 45px rgba(238, 4, 4, 0.2);
+    background: linear-gradient(45deg, #6f4242, #ffffff);
 }
 
 .footer {
@@ -279,11 +274,6 @@ html, body {
         font-size: 0.875rem;
         color: white;
     }
-
-    .estrella {
-        width: 50px;
-    }
-
     .retroceso {
         width: 40px;
         
