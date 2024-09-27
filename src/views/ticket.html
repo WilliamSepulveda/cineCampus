@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ticket</title>
     <link rel="stylesheet" href="../css/ticket.css">
-    <!-- Añadir el CDN de JsBarcode -->
+    <script type="module"  defer src="../js/ticket.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+
 </head>
 <body>
     <header class="header">
-        <a href="../views/oder_summary.html">
+        <a href="/oder_summary">
             <img id="back" src="../storage/img/Back.svg" alt="back icon">
         </a>
         <h1>Cinema Selection</h1>
@@ -33,7 +34,7 @@
                 <div class="cinema-info">
                     <div class="cinema-item">
                         <p><strong>Cinema:</strong></p>
-                        <h2>Hartono Mall 12</h2>
+                        <h2>Auditorio Campus</h2>
                         <img src="../storage/img/3D.jpg" alt="3D Icon" class="cinema-format">
                     </div>
                     

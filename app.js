@@ -28,6 +28,23 @@ app.get('/home_cine', (req, res) => {
   res.sendFile(join(process.env.EXPRESS_STATIC, 'views', 'home_cine.html'));
 });
 
+app.get('/cinema_selection', (req, res) => {
+  res.sendFile(join(process.env.EXPRESS_STATIC, 'views', 'cinema_selection.html'));
+});
+
+app.get('/choose_seat', (req, res) => {
+  res.sendFile(join(process.env.EXPRESS_STATIC, 'views', 'choose_seat.html'));
+});
+
+app.get('/oder_summary', (req, res) => {
+  res.sendFile(join(process.env.EXPRESS_STATIC, 'views', 'oder_summary.html'));
+});
+
+app.get('/ticket', (req, res) => {
+  res.sendFile(join(process.env.EXPRESS_STATIC, 'views', 'ticket.html'));
+});
+
+
 app.use('/user', userRouter);
 
 app.use((req, res) => {
