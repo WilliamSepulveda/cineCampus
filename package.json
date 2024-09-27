@@ -5,16 +5,18 @@
   "type": "commonjs",
   "scripts": {
     "dev": "node --watch --env-file .env app.js",
-    "start": "node app.js" 
+    "start": "node app.js"
   },
   "keywords": [],
   "author": "Willliam Jair Sepulveda Carrillo",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.5",
+    "express": "^4.18.2",
     "mongodb": "^6.8.0",
-    "nodemailer": "^6.9.14",
-    "express": "^4.18.2" 
+    "nodemailer": "^6.9.14"
   },
   "devDependencies": {
     "@types/node": "^22.5.0",

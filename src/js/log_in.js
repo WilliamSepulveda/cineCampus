@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
           const url = `${e.target.action}?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`;
           
-          // Realizar la solicitud GET
+          
           const response = await fetch(url, {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' },
