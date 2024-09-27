@@ -16,34 +16,45 @@
     </a>
     <div class="content-container">
       <div class="form-container">
-        <form action="/user/v1" method="POST" class="login-form">
+        <form id="createAccountForm" class="login-form">
           <h2 class="login-title">Create account</h2>
 
           <div class="input-field">
-            <label for="nick">Username:</label>
-            <input type="text" id="nick" name="nick" required placeholder="your Username" value="williamj"> 
+            <label for="nombre">Name:</label>
+            <input type="text" id="nombre" name="nombre" required placeholder="Your First Name" > 
           </div>
-
+      
+      
+          <div class="input-field">
+            <label for="nick">Username:</label>
+            <input type="text" id="nick" name="nick" required placeholder="Your Username"> 
+          </div>
+      
           <div class="input-field">
             <label for="email">Email address:</label>
-            <input type="email" id="email" name="email" required placeholder="Ingresa tu correo" oninput="validateEmail()" value="3209204930w@gmail.com"> 
-            <img id="email-verified-icon" src="../storage/img/on.svg" alt="Verificado" style="display: none;">
+            <input type="email" id="email" name="email" required placeholder="Your Email" oninput="validateEmail()"> 
           </div>
-
+      
+          <div class="input-field">
+            <label for="telefono">Phone Number:</label>
+            <input type="text" id="telefono" name="telefono" placeholder="Your Phone Number"> 
+          </div>
+      
           <div class="input-field">
             <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required placeholder="Ingresa tu contraseña" value="123456789">
-            <img id="toggle-password" src="../storage/img/show.png" alt="Mostrar contraseña" onclick="togglePasswordVisibility()">
+            <input type="password" id="password" name="password" required placeholder="Your Password">
           </div>
-
+      
           <div class="forgot-password">
             <a href="#">I accept the terms and privacy policy</a>
           </div>
-
+      
           <div class="button-container">
-            <button type="submit" class="sign-in">Log in</button>
+            <button type="submit" class="sign-in">Create Account</button>
           </div>
-        </form>
+      </form>
+      
+      
       </div>
     </div>
     <div class="footer">

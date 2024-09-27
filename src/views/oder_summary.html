@@ -9,7 +9,7 @@
 </head>
 <body>
     <header class="header">
-        <a href="../views/choose_seat.html">
+        <a href="/home_cine">
             <img id="back" src="../storage/img/Back.svg" alt="Back icon">
         </a>
         <h1>Order Summary</h1>
@@ -20,12 +20,12 @@
 
     <main class="summary-container">
         <section class="movie-info">
-            <img src="../storage/img/alien.jpg" alt="Puss in Boots Movie Poster" class="movie-poster">
+            <img src="../storage/img/alien.jpg" alt="Movie Poster" class="movie-poster" id="movie-poster">
             <div class="movie-details">
-                <h2>Alien Romulus</h2>
-                <p>Accion</p>
-                <p><strong>HARTONO MALL</strong></p>
-                <p>Sun, 12 Feb 2023. 13:00</p>
+                <h2 id="movie-title">Título de la película</h2>
+                <p id="movie-genre">Género de la película</p>
+                <p><strong>Auditorio Campus</strong></p>
+                <p id="movie-date">Fecha y hora</p>
             </div>
         </section>
 
@@ -46,37 +46,38 @@
                 </div>
             </div>
         </section>
+        
 
         <section class="payment-method">
             <h3>Payment method</h3>
-            <div class="payment-card">
-                <img src="../storage/img/mastercard-2-logo-svgrepo-com.svg" alt="Visa logo" class="card-logo">
-                <span>**** **** **** 0174</span>
-                <input type="radio" name="payment" value="visa">
-            </div>
+    <label for="payment1" class="payment-card">
+        <img src="../storage/img/mastercard-2-logo-svgrepo-com.svg" alt="Mastercard logo" class="card-logo">
+        <span>**** **** **** 0174</span>
+        <input type="radio" id="payment1" name="payment" value="mastercard">
+    </label>
 
-            <!-- Button to toggle payment options -->
-            <button id="toggle-payment-options" class="toggle-button">Choose a different method</button>
+    <!-- Button to toggle payment options -->
+    <button id="toggle-payment-options" class="toggle-button">Choose a different method</button>
 
-            <!-- Hidden payment options -->
-            <div id="payment-options" class="payment-options hidden">
-                <div class="payment-card">
-                    <img src="../storage/img/visa-svgrepo-com.svg" alt="Visa logo" class="card-logo">
-                    <span>**** **** **** 1234</span>
-                    <input type="radio" name="payment" value="visa">
-                </div>
-                <div class="payment-card">
-                    <img src="../storage/img/paypal-svgrepo-com.svg" alt="PayPal logo" class="card-logo">
-                    <span>PayPal</span>
-                    <input type="radio" name="payment" value="paypal">
-                </div>
-            </div>
+    <!-- Hidden payment options -->
+    <div id="payment-options" class="payment-options hidden">
+        <label for="payment2" class="payment-card">
+            <img src="../storage/img/visa-svgrepo-com.svg" alt="Visa logo" class="card-logo">
+            <span>**** **** **** 1234</span>
+            <input type="radio" id="payment2" name="payment" value="visa">
+        </label>
+        <label for="payment3" class="payment-card">
+            <img src="../storage/img/paypal-svgrepo-com.svg" alt="PayPal logo" class="card-logo">
+            <span>PayPal</span>
+            <input type="radio" id="payment3" name="payment" value="paypal">
+        </label>
+    </div>
 
             <div class="caducidad">
                 <p class="payment-timer">Complete your payment in <span class="timer">04:59</span></p>
             </div>
         </section>
-        <a href="../views/ticket.html">
+        <a href="/ticket">
             <section class="purchase">
                 <button class="buy-ticket">Buy Ticket</button>
             </section>

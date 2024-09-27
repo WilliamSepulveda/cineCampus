@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Choose Seat</title>
     <link rel="stylesheet" href="../css/choose_seat.css">
+    <script type="module" defer src="../js/choose_seat.js"></script>
 </head>
 <body>
     <header class="header">
-        <a href="../views/cinema_selection.html">
+        <a href="/home_cine">
             <img id="back" src="../storage/img/Back.svg" alt="Back icon">
         </a>
         <h1>Choose Seat</h1>
@@ -25,79 +26,6 @@
         </section>
 
         <section class="seats-section">
-            <div class="seat-row1">
-                <div class="seat-label">A</div>
-                <div class="seat available"></div>
-                <div class="seat available"></div>
-                <div class="seat available"></div>
-                <div class="seat available"></div>
-                <div class="seat available"></div>
-                
-            </div>
-
-            <div class="seat-row1">
-                <div class="seat-label">B</div>
-                <div class="seat available"></div>
-                <div class="seat available"></div>
-                <div class="seat available"></div>
-                <div class="seat available"></div>
-                <div class="seat available"></div>
-                <div class="seat available"></div>
-                <div class="seat available"></div>
-                
-            </div>
-
-            <div class="seat-row2">
-                <div class="seat-label">C</div>
-                <div class="seat reserved"></div>
-                <div class="seat reserved"></div>
-                <div class="seat reserved"></div>
-                <div class="seat reserved"></div>
-                <div class="seat selected"></div>
-                <div class="seat reserved"></div>
-                <div class="seat reserved"></div>
-                <div class="seat reserved"></div>
-                <div class="seat reserved"></div>
-            </div>
-
-            <div class="seat-row">
-                <div class="seat-label">D</div>
-                <div class="seat reserved"></div>
-                <div class="seat reserved"></div>
-                <div class="seat reserved"></div>
-                <div class="seat reserved"></div>
-                <div class="seat reserved"></div>
-                <div class="seat reserved"></div>
-                <div class="seat reserved"></div>
-                <div class="seat reserved"></div>
-                <div class="seat reserved"></div>
-            </div>
-            <div class="seat-row">
-                <div class="seat-label">E</div>
-                <div class="seat reserved"></div>
-                <div class="seat reserved"></div>
-                <div class="seat reserved"></div>
-                <div class="seat reserved"></div>
-                <div class="seat reserved"></div>
-                <div class="seat reserved"></div>
-                <div class="seat reserved"></div>
-                <div class="seat reserved"></div>
-                <div class="seat reserved"></div>
-            </div>
-
-            <div class="seat-row">
-                <div class="seat-label">F</div>
-                <div class="seat reserved"></div>
-                <div class="seat reserved"></div>
-                <div class="seat reserved"></div>
-                <div class="seat available"></div>
-                <div class="seat reserved"></div>
-                <div class="seat available"></div>
-                <div class="seat available"></div>
-                <div class="seat reserved"></div>
-                <div class="seat available"></div>
-            </div>
-
             
         </section>
 
@@ -115,27 +43,26 @@
 
         <section class="date-time">
             <div class="dates">
-                <div class="day selected">Frid <span>17</span></div>
-                <div class="day">Sat <span>18</span></div>
-                <div class="day">Sun <span>19</span></div>
-                <div class="day">Mon <span>20</span></div>
-                <div class="day">Tue <span>21</span></div>
-
+                <div class="day selected" data-fecha="2024-09-17">Frid <span>17</span></div>
+                <div class="day" data-fecha="2024-09-18">Sat <span>18</span></div>
+                <div class="day" data-fecha="2024-09-19">Sun <span>19</span></div>
+                <div class="day" data-fecha="2024-09-20">Mon <span>20</span></div>
+                <div class="day" data-fecha="2024-09-21">Tue <span>21</span></div>
             </div>
             <div class="times">
-                <button class="time selected">13:00 <span>$ 5.25</span> - 3D</button>
-                <button class="time">15:45 <span>$ 5.99</span> - 3D</button>
-                <button class="time">18:50 <span>$ 6.50</span> - 3D</button>
-                <button class="time">18:50 <span>$ 6.50</span> - 3D</button>
-                
+                <button class="time" data-precio="5.25">13:00 <span>$ 5.25</span> - 3D</button>
+                <button class="time" data-precio="5.99">15:45 <span>$ 5.99</span> - 3D</button>
+                <button class="time" data-precio="6.50">18:50 <span>$ 6.50</span> - 3D</button>
+                <button class="time" data-precio="6.50">20:00 <span>$ 6.50</span> - 3D</button>
             </div>
         </section>
+        
 
         <section class="purchase">
             <div class="price">Price <span>$24,99</span>
             </div>
-            <a href="../views/oder_summary.html">
-                <button class="buy-ticket">Buy ticket</button>
+            <a href="/oder_summary">
+                <button id="buy-ticket" class="buy-ticket">Buy ticket</button>
             </a>
         </section>
     </main>

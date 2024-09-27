@@ -1,190 +1,64 @@
-const Pelicula = require ("./js/module/pelicula");
-const asiento = require("./js/module/asiento");
-const { ObjectId } = require('mongodb')
-const Boletas = require('./js/module/boleta');
-const Asientos = require("./js/module/asiento");
-const Usuario = require("./js/module/usuario");
+require('dotenv').config();
+const express = require('express');
+const userRouter = require('./server/router/userRouter.js');
+const movieRouter = require('./server/router/PeliculasRouter.js');
+const asientosRouter = require('./server/router/asientosRouter.js')
+const { join } = require('path');
 
-// // ejemplo listar todas la peliculas 
-// let obj = new Pelicula();
-// obj.getAllPelicula()
-//     .then(res => {
-//         console.log(res);
-//     })
-//     .catch(err => {
-//         console.log(err);
-//     });
+const app = express();
 
-// // listar las peliculas por id
-// let obj = new Pelicula();
-// obj.getSpecificMovies("66d0777d3170ffb8c89f4bb4")
-//     .then(res=>{
-//         console.log(res);
-//     })
-//     .catch(err=>{
-//         console.log(err);
-//     })
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// // compra de boleta 
-// const idBoleta = "66d07cde3170ffb8c89f4bd9"; 
-// const tipoMovimiento = {
-//     id: 2,
-//     nombre: "compra"
-// };
+app.use('/css', express.static(join(process.env.EXPRESS_STATIC, 'css')));
+app.use('/js', express.static(join(process.env.EXPRESS_STATIC, 'js')));
+app.use('/storage', express.static(join(process.env.EXPRESS_STATIC, 'storage')));
 
-// const newBoletas = new Boletas();
+app.get('/', (req, res) => {
+  res.sendFile(join(process.env.EXPRESS_STATIC, 'index.html')); 
+});
 
-// newBoletas.BuyBoletas(idBoleta, tipoMovimiento)
-//     .then(res => {
-//         console.log("Operación completada.");
-//         console.log("Detalles de la boleta:", res.boleta);
-//         console.log("Tipo de movimiento:", res.movimiento);
-//     })
-//     .catch(err => {
-//         console.error("Error en la operación:", err);
-//     });
+app.get('/log_in', (req, res) => {
+  res.sendFile(join(process.env.EXPRESS_STATIC, 'views', 'log_in.html'));
+});
 
-// // consulta de disponibilidad de asientos
-// const asientos = new Asientos();
-// const idFuncion = '646a0c4f1b0f3b5d16c58222';
-// const idLugar = 101;
+app.get('/create_account', (req, res) => {
+  res.sendFile(join(process.env.EXPRESS_STATIC, 'views', 'create_account.html'));
+});
 
-// asientos.consultarDisponibilidad(idFuncion, idLugar)
-//     .then(res => {
-//         console.log('Disponibilidad de asientos:', res);
-//     })
-//     .catch(err => {
-//         console.error('Error al consultar disponibilidad:', err);
-//     });
+app.get('/home_cine', (req, res) => {
+  res.sendFile(join(process.env.EXPRESS_STATIC, 'views', 'home_cine.html'));
+});
 
-// // reservar  asientos
-// const asientos = new Asientos();
-// const idFuncion = '646a0c4f1b0f3b5d16c58222';
-// const idLugar = 102;
-// const idAsiento = '66d079643170ffb8c89f4bd0';
-// const usuarioId = '66d078803170ffb8c89f4bc1';
+app.get('/cinema_selection', (req, res) => {
+  res.sendFile(join(process.env.EXPRESS_STATIC, 'views', 'cinema_selection.html'));
+});
 
-// asientos.ReservaAsientos(idFuncion, idLugar, idAsiento, usuarioId)
-//     .then(res => {
-//         console.log(res.mensaje, 'ID de la boleta:', res.boleta);
-//     })
-//     .catch(err => {
-//         console.error('Error al reservar asiento:', err);
-//     });
+app.get('/choose_seat', (req, res) => {
+  res.sendFile(join(process.env.EXPRESS_STATIC, 'views', 'choose_seat.html'));
+});
 
-// // cancelar reserva
-// const asientos = new Asientos();
-// const idFuncion = '646a0c4f1b0f3b5d16c58222';
-// const idLugar = 102;
-// const idAsiento = '66d079643170ffb8c89f4bd0';
-// const usuarioId = '66d078803170ffb8c89f4bc1';
+app.get('/oder_summary', (req, res) => {
+  res.sendFile(join(process.env.EXPRESS_STATIC, 'views', 'oder_summary.html'));
+});
 
-// asientos.CancelarReserva(idFuncion, idAsiento, usuarioId)
-//     .then(res => {
-//         console.log(res.mensaje, 'ID de la boleta cancelada:', res.boleta);
-//     })
-//     .catch(err => {
-//         console.error('Error al cancelar la reserva:', err);
-//     });
+app.get('/ticket', (req, res) => {
+  res.sendFile(join(process.env.EXPRESS_STATIC, 'views', 'ticket.html'));
+});
 
+app.use('/user', userRouter);
 
-// // aplicacion de descuentos para usuarios VIP 
-// const idBoleta = "66d07cde3170ffb8c89f4bd9"; 
-// const tipoMovimiento = {
-//     id: 2,
-//     nombre: "compra"
-// };
-// const newBoletas = new Boletas();
-// newBoletas.BuyBoletasDescuento(idBoleta, tipoMovimiento)
-//     .then(res => {
-//         console.log("Operación completada.");
-//         console.log("Detalles de la boleta:", res.boleta);
-//         console.log("Tipo de movimiento:", res.movimiento);
-//     })
-//     .catch(err => {
-//         console.error("Error en la operación:", err);
-//     });
+app.use('/movies', movieRouter);
 
-// // validar el tipo de tarjeta del usuario
-// const idBoleta = "66d07cde3170ffb8c89f4bd9";
-// const usuarioId = "66d078803170ffb8c89f4bc4"; // El ID del usuario
-// const tipoMovimiento = {
-//     id: 2,
-//     nombre: "compra"
-// };
+app.use('/asientos', asientosRouter);
 
-// const newBoletas = new Boletas();
+app.use((req, res) => {
+  res.status(404).json({ message: 'La ruta solicitada no está disponible' });
+});
 
-// newBoletas.verificacionUsuario(idBoleta, usuarioId, tipoMovimiento)
-//     .then(res => {
-//         console.log("Operación completada.");
-//         console.log("Detalles de la boleta:", res.boleta);
-//         console.log("Tipo de movimiento:", res.movimiento);
-//     })
-//     .catch(err => {
-//         console.error("Error en la operación:", err);
-//     });
+const port = process.env.EXPRESS_PORT;
+const host = process.env.EXPRESS_HOST_NAME;
 
-// // compra de boletos en linea
-// const idBoleta = "66d07cde3170ffb8c89f4bd9"; // ID de la boleta a comprar
-// const tipoMovimiento = {
-//     id: 2,
-//     nombre: "compra"
-// };
-
-// const newBoletas = new Boletas();
-
-// newBoletas.BuyBoletas(idBoleta, tipoMovimiento)
-//     .then(res => {
-//         console.log("Operación completada.");
-//         console.log("Detalles de la boleta:", res.boleta);
-//         console.log("Tipo de movimiento:", res.movimiento);
-//         console.log("Detalles del pago:", res.pago);
-//     })
-//     .catch(err => {
-//         console.error("Error en la operación:", err);
-//     });
-
-// // connfirmacion de de la compra 
-// const idBoleta = "66d07cde3170ffb8c89f4bd9";
-// const usuarioId = "66d078803170ffb8c89f4bc0";
-// const tipoMovimiento = {
-//     id: 2,
-//     nombre: "compra"
-// };
-// // Crear una instancia de la clase Boletas
-// const boletas = new Boletas();
-// boletas.BuyBoletasConfirmacionUsuario(idBoleta, tipoMovimiento, usuarioId)
-//     .then(res => {
-//         console.log("Operación completada.");
-//         console.log("Detalles de la boleta:", res.boleta);
-//         console.log("Tipo de movimiento:", res.movimiento);
-//         console.log("Detalles del pago:", res.pago);
-//         console.log("Datos de usuario", res.usuario);
-
-//         // Confirmación enviada al usuario
-//         console.log("Confirmación de compra enviada al usuario.");
-//     })
-//     .catch(err => {
-//         console.error("Error en la operación:", err);
-//     });
-
-const val = {
-    nick: 'cachetes',
-    pass: '0123456789'
-};
-const rol = 'administrador';
-
-const usuario = new Usuario();
-usuario.initialize()  // Inicializar y conectar a la base de datos
-    .then(() => {
-        return usuario.crearUsuario(val, rol);
-    })
-    .then(res => {
-        console.log("Operación completada.");
-        console.log("Detalles del usuario:", res);
-        console.log("Confirmación de creación de usuario enviada al usuario.");
-    })
-    .catch(err => {
-        console.error("Error en la operación:", err);
-    });
+app.listen(port, host, () => {
+  console.log(`${process.env.EXPRESS_PROTOCOL}${host}:${port}`);
+});

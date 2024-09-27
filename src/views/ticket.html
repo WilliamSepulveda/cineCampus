@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ticket</title>
     <link rel="stylesheet" href="../css/ticket.css">
-    <!-- Añadir el CDN de JsBarcode -->
+    <script type="module" defer src="../js/ticket.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
 </head>
 <body>
     <header class="header">
-        <a href="../views/oder_summary.html">
+        <a href="/home_cine">
             <img id="back" src="../storage/img/Back.svg" alt="back icon">
         </a>
         <h1>Cinema Selection</h1>
@@ -22,44 +22,44 @@
     <main class="ticket-container">
         <div class="ticket">
             <!-- Movie Poster -->
-            <div class="movie-poster">
-                <img src="../storage/img/alien.jpg" alt="Alien Romulus Poster">
+            <div class="movie-poster" id="movie-poster">
+                <img src="" alt="Movie Poster" id="poster-image"> <!-- La imagen se cargará dinámicamente -->
             </div>
 
             <div class="ticket-details">
-                <h2>Alien Romulus</h2>
+                <h2 id="movie-title">Movie Title</h2> <!-- Título dinámico -->
                 <p>Show this ticket at the entrance</p>
 
                 <div class="cinema-info">
                     <div class="cinema-item">
                         <p><strong>Cinema:</strong></p>
-                        <h2>Hartono Mall 12</h2>
+                        <h2 id="cinema-name">Auditorio Campus</h2>
                         <img src="../storage/img/3D.jpg" alt="3D Icon" class="cinema-format">
                     </div>
                     
                     <div class="info-grid">
                         <div class="info-item">
                             <p><strong>Date:</strong></p>
-                            <h2>Sun, Feb 12th 2023</h2>
+                            <h2 id="ticket-date">Sun, Feb 12th 2023</h2> <!-- Fecha dinámica -->
                         </div>
                         <div class="info-item">
                             <p><strong>Time:</strong></p>
-                            <h2>13:00</h2>
+                            <h2 id="ticket-time">13:00</h2> <!-- Hora dinámica -->
                         </div>
                         <div class="info-item">
                             <p><strong>Seat:</strong></p>
-                            <h2>C5</h2>
+                            <h2 id="ticket-seat">C5</h2> <!-- Asiento dinámico -->
                         </div>
                         <div class="info-item">
                             <p><strong>Order ID:</strong></p>
-                            <h2 id="order-id">12345678</h2> <!-- El ID dinámico para el código de barras -->
+                            <h2 id="order-id">12345678</h2> <!-- ID dinámico para el código de barras -->
                         </div>
                     </div>
 
                     <p><strong>Cinema Hall #:</strong></p>
-                    <h2>Cinema A</h2><br>
+                    <h2 id="cinema-hall">Cinema A</h2><br>
                     <p><strong>Cost:</strong></p>
-                    <h2>$26.99</h2>
+                    <h2 id="ticket-cost">$26.99</h2> <!-- Costo dinámico -->
                 </div>
             </div>
 
@@ -68,17 +68,5 @@
             </div>
         </div>
     </main>
-    <script>
-        
-        var orderId = document.getElementById('order-id').innerText;
-
-        JsBarcode("#barcode", orderId, {
-            format: "CODE128",    
-            lineColor: "#000",   
-            width: 2,             
-            height: 50,          
-            displayValue: false    
-        });
-    </script>
 </body>
 </html>
