@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const userRouter = require('./server/router/userRouter.js');
 const movieRouter = require('./server/router/PeliculasRouter.js');
+const asientosRouter = require('./server/router/asientosRouter.js')
 const { join } = require('path');
 
 const app = express();
@@ -49,7 +50,7 @@ app.use('/user', userRouter);
 
 app.use('/movies', movieRouter);
 
-
+app.use('/asientos', asientosRouter);
 
 app.use((req, res) => {
   res.status(404).json({ message: 'La ruta solicitada no está disponible' });
