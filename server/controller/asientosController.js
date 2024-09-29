@@ -13,21 +13,15 @@ exports.getAsientos = async (req, res) => {
 };
 
 exports.updateAsiento = async (req, res) => {
-    const { codigo } = req.params;
-    const { estado } = req.body;
+    const { codigo } = req.params; 
+    const { estado } = req.body; 
+
+    const asiento = new Asiento();
 
     try {
-        const result = await db.collection('asiento').updateOne(
-            { 'codigo.asiento': codigo },
-            { $set: { estado: estado } }
-        );
-
-        if (result.matchedCount === 0) {
-            return res.status(404).send('Asiento no encontrado');
-        }
-
-        res.send({ message: 'Estado de asiento actualizado exitosamente' });
+        const result = await asiento.updateAsiento(codigo, estado);
+        res.send(result); 
     } catch (error) {
-        res.status(500).send(`Error al actualizar el estado: ${error.message}`);
+        res.status(500).send(`Error al actualizar el estado: ${error.message}`); 
     }
-}
+};
