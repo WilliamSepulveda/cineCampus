@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
         fetch(`/movies/${movieId}`)
             .then(response => {
                 if (!response.ok) {
-                    throw new Error('Network response was not ok ' + response.statusText);
+                    throw new Error('Error en la respuesta de red ' + response.statusText);
                 }
                 return response.json();
             })
@@ -19,22 +19,36 @@ document.addEventListener("DOMContentLoaded", function() {
                 document.cookie = `movieGenre=${encodeURIComponent(movie.genero)}; path=/`;
                 document.cookie = `moviePoster=${encodeURIComponent(movie.posterUrl)}; path=/`;
                 document.cookie = `movieSynopsis=${encodeURIComponent(movie.sinopsis)}; path=/`;
-                
-                // Rellenar la información de la película en el DOM
-                document.querySelector('.movie__image img').src = movie.posterUrl ? `/storage/img/${movie.posterUrl}` : ''; 
-                document.querySelector('#main__section__title h1').innerText = movie.titulo || 'Título no disponible';
-                document.querySelector('#main__section__title span').innerText = movie.genero || 'Género no disponible';
-                document.querySelector('#main__section__title p').innerText = movie.sinopsis || 'Sinopsis no disponible';
+                document.cookie = `selectedMoviePoster=${encodeURIComponent(movie.posterUrl)}; path=/`;
+                console.log('Cookies disponibles:', document.cookie);
 
+
+                // Rellenar la información de la película en el DOM
+                const posterImage = document.querySelector('.movie__image img');
+                const titleElement = document.querySelector('#main__section__title h1');
+                const genreElement = document.querySelector('#main__section__title span');
+                const synopsisElement = document.querySelector('#main__section__title p');
+                
+                if (posterImage && movie.posterUrl) {
+                    posterImage.src = `/storage/img/${movie.posterUrl}`;
+                } else {
+                    console.warn('No se encontró un póster para esta película.');
+                }
+
+                titleElement.innerText = movie.titulo || 'Título no disponible';
+                genreElement.innerText = movie.genero || 'Género no disponible';
+                synopsisElement.innerText = movie.sinopsis || 'Sinopsis no disponible';
+
+                // Rellenar los actores
                 const actorsContainer = document.querySelector('.actors');
                 actorsContainer.innerHTML = ''; 
 
-                if (Array.isArray(movie.cast)) {
+                if (Array.isArray(movie.cast) && movie.cast.length > 0) {
                     movie.cast.forEach(actor => {
                         const actorItem = document.createElement('div');
                         actorItem.classList.add('information_Actors');
                         actorItem.innerHTML = `
-                            <img src="../storage/img/${actor.image}" alt="${actor.name}"> 
+                            <img src="../storage/img/${actor.image || 'default-actor.jpg'}" alt="${actor.name || 'Actor no disponible'}"> 
                             <div class="text-container">
                                 <p>${actor.name || 'Nombre no disponible'}</p>
                                 <span>${actor.character || 'Personaje no disponible'}</span>
@@ -44,6 +58,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     });
                 } else {
                     console.warn('No hay actores disponibles para esta película.');
+                    actorsContainer.innerHTML = '<p>No hay actores disponibles.</p>';
                 }
             })
             .catch(error => console.error('Error:', error));
