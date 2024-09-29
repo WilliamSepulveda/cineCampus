@@ -41,9 +41,25 @@ El proyecto utiliza plantillas HTML para la interfaz de usuario, incluyendo:
 1. Clona el repositorio:
    ```bash
    git clone https://github.com/tu-usuario/cinecampuslands.git
+    ```
+## crea un archivo .env 
+- EXPRESS_STATIC=C:\Users\32092\Desktop\projectos_william\cineCampus\cineCampus\src 
+- EXPRESS_PORT=5500 
+- EXPRESS_HOST_NAME=localhost 
+- EXPRESS_PROTOCOL=http:// 
+- EXPRESS_KEY_SECRET="miLlaveSecreta" 
+- MONGO_PROTOCOL=mongodb:// 
+- MONGO_USER=adminCineCampuslands 
+- MONGO_PSW=123456789 
+- MONGO_HOST_NAME=localhost 
+- MONGO_PORT=27017 
+- MONGO_DB_NAME=cineCampuslands
 
 ## Instala las dependencias:
     npm install
+    npm install mongoose
+    npm install express 
+    npm install dotenv
 
 ## Para ejecutar el proyecto localmente:
 
