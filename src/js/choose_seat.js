@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     let totalPrice = 0;
-    let seatPrice = 0; // Inicializa el precio del asiento aquí
+    let seatPrice = 0; 
     const priceElement = document.querySelector('.price span'); 
     const selectedSeats = new Set(); 
 
@@ -16,7 +16,6 @@ document.addEventListener("DOMContentLoaded", function() {
         day.addEventListener('click', function() {
             days.forEach(d => d.classList.remove('selected'));
             this.classList.add('selected');
-            // Opcional: podrías hacer algo aquí para cambiar la disponibilidad de los asientos según el día
         });
     });
 
@@ -26,8 +25,8 @@ document.addEventListener("DOMContentLoaded", function() {
         time.addEventListener('click', function() {
             times.forEach(t => t.classList.remove('selected'));
             this.classList.add('selected');
-            seatPrice = parseFloat(this.dataset.precio); // Obtiene el precio del botón seleccionado
-            updateTotalPrice(); // Actualiza el precio total al seleccionar el horario
+            seatPrice = parseFloat(this.dataset.precio); 
+            updateTotalPrice(); 
         });
     });
 
@@ -40,11 +39,11 @@ document.addEventListener("DOMContentLoaded", function() {
             return response.json();
         })
         .then(data => {
-            console.log('Datos recibidos:', data); // Log para verificar los datos
+            console.log('Datos recibidos:', data); 
 
             if (!Array.isArray(data)) {
                 console.error('La respuesta no es un array:', data);
-                return; // Salir de la función si no es un array
+                return; 
             }
 
             const seatsSection = document.querySelector('.seats-section');
@@ -87,11 +86,11 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // Manejar el botón de compra
-    const buyTicketButton = document.getElementById('buy-ticket'); // Asegúrate de que este ID es correcto
+    const buyTicketButton = document.getElementById('buy-ticket'); 
     if (buyTicketButton) {
         buyTicketButton.addEventListener('click', function() {
             if (selectedSeats.size === 0) {
-                alert("Por favor, selecciona al menos un asiento."); // Verifica que haya asientos seleccionados
+                alert("Por favor, selecciona al menos un asiento."); 
                 return;
             }
 
@@ -102,6 +101,7 @@ document.addEventListener("DOMContentLoaded", function() {
             Promise.all(promises)
                 .then(() => {
                     console.log("Asientos reservados exitosamente");
+                    storeOrderData(selectedSeats, seatPrice, totalPrice); // Almacena los datos de la orden aquí
                     selectedSeats.clear(); 
                     updateTotalPrice(); 
                 })
@@ -130,3 +130,16 @@ document.addEventListener("DOMContentLoaded", function() {
         .catch(error => console.error('Error al actualizar el estado del asiento:', error));
     }
 });
+
+// Almacenar datos de asientos seleccionados y precios
+function storeOrderData(selectedSeats, seatPrice, totalPrice) {
+    const serviceFee = 1.99; 
+    const totalSeats = selectedSeats.size;
+    const totalCost = totalPrice + serviceFee; 
+
+    // Almacenar datos en localStorage
+    localStorage.setItem('orderNumber', '123456786'); 
+    localStorage.setItem('selectedSeats', JSON.stringify(Array.from(selectedSeats))); 
+    localStorage.setItem('serviceFee', serviceFee.toString()); 
+    localStorage.setItem('totalCost', totalCost.toString()); 
+}

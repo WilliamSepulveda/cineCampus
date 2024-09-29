@@ -13,6 +13,14 @@ document.addEventListener("DOMContentLoaded", function() {
             .then(movie => {
                 console.log('Datos de la película:', movie); 
                 
+                // Guardar información de la película en cookies
+                document.cookie = `movieId=${movie._id}; path=/`;
+                document.cookie = `movieTitle=${encodeURIComponent(movie.titulo)}; path=/`;
+                document.cookie = `movieGenre=${encodeURIComponent(movie.genero)}; path=/`;
+                document.cookie = `moviePoster=${encodeURIComponent(movie.posterUrl)}; path=/`;
+                document.cookie = `movieSynopsis=${encodeURIComponent(movie.sinopsis)}; path=/`;
+                
+                // Rellenar la información de la película en el DOM
                 document.querySelector('.movie__image img').src = movie.posterUrl ? `/storage/img/${movie.posterUrl}` : ''; 
                 document.querySelector('#main__section__title h1').innerText = movie.titulo || 'Título no disponible';
                 document.querySelector('#main__section__title span').innerText = movie.genero || 'Género no disponible';
