@@ -7,7 +7,6 @@ function loadMovies() {
         return response.json();
     })
     .then(data => {
-        console.log('Películas recibidas:', data);
 
         const nowPlayingCarousel = document.querySelector('.now-playing .movie-carousel'); 
         const comingSoonCarousel = document.querySelector('.coming-soon .movie-carousel');
@@ -15,7 +14,6 @@ function loadMovies() {
         nowPlayingCarousel.innerHTML = '';
         comingSoonCarousel.innerHTML = '';
 
-        // Filtrar las películas según el estado
         const nowPlayingMovies = data.filter(movie => movie.estado === 'en estreno');
         const comingSoonMovies = data.filter(movie => movie.estado === 'pronto lanzamiento');
 
@@ -25,8 +23,12 @@ function loadMovies() {
             
             const movieItem = document.createElement('div');
             movieItem.classList.add('movie-item');
+            const movieId = movie._id['$oid'] || movie._id; // Acceso alternativo al ID
+            const movieLink = `/cinema_selection?id=${movieId}`;
+            console.log('Enlace a cinema_selection:', movieLink); // Asegúrate de que el enlace sea correcto
+
             movieItem.innerHTML = `
-                <a href="/cinema_selection?id=${movie._id.$oid}">
+                <a href="${movieLink}">
                     <img src="${posterUrl}" alt="${movie.titulo}">
                 </a>
                 <p class="movie-title">${movie.titulo}</p>
@@ -42,8 +44,11 @@ function loadMovies() {
             
             const movieItem = document.createElement('div');
             movieItem.classList.add('movie-item');
+            const movieId = movie._id['$oid'] || movie._id; 
+            const movieLink = `/cinema_selection?id=${movieId}`;
+
             movieItem.innerHTML = `
-                <a href="/cinema_selection?id=${movie._id.$oid}">
+                <a href="${movieLink}">
                     <img src="${posterUrl}" alt="${movie.titulo}">
                 </a>
                 <p class="movie-title">${movie.titulo}</p>
@@ -52,10 +57,11 @@ function loadMovies() {
 
             comingSoonCarousel.appendChild(movieItem);
         });
+
         console.log(`Películas en estreno: ${nowPlayingCarousel.children.length}`);
         console.log(`Películas próximamente: ${comingSoonCarousel.children.length}`);
     })
     .catch(error => console.error('Error:', error));
 }
 
-window.onload = loadMovies;
+window.onload = loadMovies;  

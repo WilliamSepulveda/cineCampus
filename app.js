@@ -49,6 +49,8 @@ app.use('/user', userRouter);
 
 app.use('/movies', movieRouter);
 
+
+
 app.use((req, res) => {
   res.status(404).json({ message: 'La ruta solicitada no está disponible' });
 });

@@ -16,7 +16,7 @@ module.exports = class Movie {
     async insertCollection(data) {
         await this.connectDB();
         try {
-            const collection = this.db.collection('Pelicula'); 
+            const collection = this.db.collection('Pelicula');
             const result = await collection.insertOne(data);
             if (!result.acknowledged) throw new Error('Failed to insert document');
             return { status: 200, message: 'Document inserted successfully', data: result };
@@ -34,6 +34,17 @@ module.exports = class Movie {
             return result;
         } catch (error) {
             throw new Error(`Error fetching documents: ${error.message}`);
+        }
+    }
+
+    async findById(id) {
+        await this.connectDB();
+        try {
+            const collection = this.db.collection('Pelicula');
+            const result = await collection.findOne({ _id: new ObjectId(id) }); 
+            return result;
+        } catch (error) {
+            throw new Error(`Error al buscar documento: ${error.message}`);
         }
     }
 };

@@ -1,4 +1,6 @@
+const { ObjectId } = require('mongodb');
 const Movie = require('../model/PeliculasModel');
+
 
 const movie = new Movie();
 
@@ -25,5 +27,19 @@ exports.getMovies = async (req, res) => {
     } catch (error) {
         console.error('Error al obtener películas:', error.message);
         res.status(500).json({ message: 'Error al obtener películas' });
+    }
+};
+
+exports.getMovieById = async (req, res) => {
+    try {
+        const movieId = req.params.id;
+        const movieData = await movie.findById(movieId); 
+        if (!movieData) {
+            return res.status(404).json({ message: 'Película no encontrada' });
+        }
+        res.status(200).json(movieData);
+    } catch (error) {
+        console.error('Error al obtener película:', error.message);
+        res.status(500).json({ message: 'Error al obtener película' });
     }
 };
