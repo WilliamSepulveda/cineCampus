@@ -65,27 +65,31 @@ header img {
     margin-bottom: 20px;
 }
 
-.seat-row1, .seat-row2, .seat-row {
+.seat-row {
     display: flex;
     align-items: center;
     gap: 10px;
     justify-content: center;
 }
 
-.seat-label {
-    font-size: 16px;
-    margin-right: 10px;
-}
-
+/* Estilos para los asientos */
 .seat {
     width: 30px;
     height: 30px;
     border-radius: 5px;
     background-color: #444;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff; /* Color del texto dentro del asiento */
+    font-size: 12px; /* Tamaño de la fuente en los asientos */
+    transition: background-color 0.3s, transform 0.3s; /* Efecto al seleccionar */
 }
 
+/* Estados de los asientos */
 .seat.available {
     background-color: #fff;
+    color: #000; /* Texto negro en asientos disponibles */
 }
 
 .seat.reserved {
@@ -93,18 +97,21 @@ header img {
 }
 
 .seat.selected {
-    background-color: rgb(255, 7, 7);
+    background-color: #f00;
+    border: 2px solid #000;
+    transform: scale(1.1); 
 }
 
 .legend {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     margin-bottom: 20px;
 }
 
 .legend-item {
     display: flex;
     align-items: center;
+    margin: 0 15px; /* Espacio entre items de la leyenda */
 }
 
 .legend-dot {
@@ -114,6 +121,7 @@ header img {
     margin-right: 5px;
 }
 
+/* Colores de la leyenda */
 .legend-dot.available {
     background-color: #fff;
 }
@@ -158,6 +166,7 @@ header img {
     background-color: #f00;
 }
 
+/* Horarios */
 .times {
     display: flex;
     justify-content: space-between;
@@ -178,13 +187,13 @@ header img {
 .time.selected {
     background-color: rgb(252, 12, 12);
     color: white;
-    font-size: 15px;
 }
 
 .purchase {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 20px 0; /* Espaciado alrededor de la sección de compra */
 }
 
 .price {
@@ -199,22 +208,17 @@ header img {
     border-radius: 5px;
     cursor: pointer;
     font-size: 18px;
+    transition: background-color 0.3s; /* Transición al pasar el ratón */
+}
+
+.buy-ticket:hover {
+    background-color: #c00; /* Color más oscuro al pasar el ratón */
 }
 
 
 @media (min-width: 768px) {
     .main {
         padding: 40px;
-    }
-
-    .seats-section {
-        flex-direction: row;
-        justify-content: flex-start;
-        gap: 20px;
-    }
-
-    .seat-row1, .seat-row2, .seat-row {
-        justify-content: center;
     }
 
     .seat {

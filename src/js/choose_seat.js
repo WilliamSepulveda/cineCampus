@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let seatPrice = 0; 
     const priceElement = document.querySelector('.price span'); 
     const selectedSeats = new Set(); 
+    let selectedDate = null; // Variable para almacenar la fecha seleccionada
 
     // Función para actualizar el precio total
     function updateTotalPrice() {
@@ -16,8 +17,55 @@ document.addEventListener("DOMContentLoaded", function() {
         day.addEventListener('click', function() {
             days.forEach(d => d.classList.remove('selected'));
             this.classList.add('selected');
+
+            selectedDate = this.dataset.fecha; // Guardar la fecha seleccionada
+            loadSeatsForSelectedDate(selectedDate); // Cargar asientos para la fecha seleccionada
         });
     });
+
+    // Función para cargar asientos para la fecha seleccionada
+    function loadSeatsForSelectedDate(date) {
+        fetch(`/asientos?fecha=${date}`) // Asumiendo que tu backend acepta la fecha como parámetro
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Error en la solicitud: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Datos recibidos:', data); 
+
+                if (!Array.isArray(data)) {
+                    console.error('La respuesta no es un array:', data);
+                    return; 
+                }
+
+                const seatsSection = document.querySelector('.seats-section');
+                seatsSection.innerHTML = ''; // Limpiar asientos anteriores
+
+                // Crear elementos de asiento en el DOM
+                data.forEach(asiento => {
+                    const seatDiv = document.createElement('div');
+                    const estado = asiento.estado.toLowerCase(); 
+
+                    // Asignar ID y clases
+                    seatDiv.id = `seat-${asiento.codigo.asiento}`; 
+                    seatDiv.className = `seat ${estado === 'disponible' ? 'available' : estado === 'reservado' ? 'reserved' : ''}`;
+                    seatDiv.dataset.asiento = asiento.codigo.asiento; 
+
+                    // Crear contenido para el asiento
+                    seatDiv.innerHTML = `
+                        <p>${asiento.codigo.asiento}</p>                    
+                    `;
+
+                    seatsSection.appendChild(seatDiv);
+                });
+
+                // Adjuntar eventos a los asientos disponibles
+                attachSeatEventListeners();
+            })
+            .catch(error => console.error('Error al cargar los asientos:', error));
+    }
 
     // Seleccionar una hora
     const times = document.querySelectorAll('.time');
@@ -30,38 +78,8 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    // Obtener asientos desde el backend
-    fetch('/asientos')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`Error en la solicitud: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log('Datos recibidos:', data); 
-
-            if (!Array.isArray(data)) {
-                console.error('La respuesta no es un array:', data);
-                return; 
-            }
-
-            const seatsSection = document.querySelector('.seats-section');
-
-            // Crear elementos de asiento en el DOM
-            data.forEach(asiento => {
-                const seatDiv = document.createElement('div');
-                const estado = asiento.estado.toLowerCase(); 
-
-                seatDiv.className = `seat ${estado === 'disponible' ? 'available' : estado === 'reservado' ? 'reserved' : ''}`;
-                seatDiv.dataset.asiento = asiento.codigo.asiento; 
-                seatsSection.appendChild(seatDiv);
-            });
-
-            // Adjuntar eventos a los asientos disponibles
-            attachSeatEventListeners();
-        })
-        .catch(error => console.error('Error al cargar los asientos:', error));
+    // Obtener asientos al cargar la página
+    loadSeatsForSelectedDate(selectedDate);
 
     // Función para adjuntar eventos a los asientos
     function attachSeatEventListeners() {
