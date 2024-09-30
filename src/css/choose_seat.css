@@ -21,14 +21,14 @@ header h1 {
 }
 
 header img {
-    width: 40px;
-    height: 40px;
+    width: 24px;
+    height: 24px;
 }
 
 .main {
     padding: 20px;
-    max-width: 1200px; 
-    margin: 0 auto;   
+    max-width: 1200px; /* Limitar ancho en pantallas grandes */
+    margin: 0 auto;    /* Centrar el contenido */
 }
 
 .screen {
@@ -57,6 +57,7 @@ header img {
     font-size: 12px;
 }
 
+/* Sección de Asientos */
 .seats-section {
     display: flex;
     flex-wrap: wrap;
@@ -99,9 +100,10 @@ header img {
 .seat.selected {
     background-color: #f00;
     border: 2px solid #000;
-    transform: scale(1.1); 
+    transform: scale(1.1); /* Aumentar el tamaño al seleccionar */
 }
 
+/* Leyenda */
 .legend {
     display: flex;
     justify-content: center;
@@ -131,9 +133,10 @@ header img {
 }
 
 .legend-dot.selected {
-    background-color: rgb(255, 0, 0);
+    background-color: #f00;
 }
 
+/* Fechas */
 .date-time {
     margin-bottom: 20px;
 }
@@ -185,10 +188,11 @@ header img {
 }
 
 .time.selected {
-    background-color: rgb(252, 12, 12);
+    background-color: #f00;
     color: white;
 }
 
+/* Sección de Compra */
 .purchase {
     display: flex;
     justify-content: space-between;
@@ -215,11 +219,7 @@ header img {
     background-color: #c00; /* Color más oscuro al pasar el ratón */
 }
 
-.buy-ticket:hover {
-    background-color: #c00; /* Color más oscuro al pasar el ratón */
-}
-
-
+/* Media Queries para pantallas más grandes */
 @media (min-width: 768px) {
     .main {
         padding: 40px;
