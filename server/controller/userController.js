@@ -7,7 +7,7 @@ const user = new User();
 exports.createUser = async (req, res) => {
     try {
         
-        let { codigo = 123456, nombre = 'william', apellido = 'sepulveda', nick, email, telefono = 311144688, password, rol = 'user standard' } = req.body;
+        let { nombre, nick, email, telefono, password, rol = 'user standard' } = req.body;
   
         
         if (password) {
@@ -28,7 +28,7 @@ exports.createUser = async (req, res) => {
             return res.status(400).json({ status: 400, message: 'El correo electrónico ya está registrado.' });
         }
   
-        let resUser = await user.insertCollection({ codigo, nombre, apellido, nick, email, telefono, password, rol });
+        let resUser = await user.insertCollection({ nombre, nick, email, telefono, password, rol });
         if (resUser.status === 200) {
             return res.status(201).json({ status: 201, message: 'Usuario creado exitosamente.' });
         } else {

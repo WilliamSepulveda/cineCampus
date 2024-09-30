@@ -4,14 +4,16 @@ document.querySelector('.login-form').addEventListener('submit', async (event) =
     const nick = document.getElementById('nick').value;
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
-  
+    const nombre = document.getElementById('nombre').value;
+    const telefono = document.getElementById('telefono').value;
+
     try {
       const response = await fetch('/user/v1', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ nick, email, password }),
+        body: JSON.stringify({ nick, email, password, nombre, telefono}),
       });
   
       const result = await response.json();
