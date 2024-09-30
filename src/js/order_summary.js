@@ -26,14 +26,14 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Código de temporizador para la caducidad
-    let timeLeft = 120;
+    let timeLeft = 60;
     const timerDisplay = document.querySelector('.timer');
 
     const countdown = setInterval(() => {
         if (timeLeft <= 0) {
             clearInterval(countdown);
             alert('¡El tiempo ha expirado! Por favor, reinicia tu pedido.');
-            window.location = '../views/choose_seat.html';
+            window.location = '/home_cine';
         } else {
             const minutes = Math.floor(timeLeft / 60);
             const seconds = timeLeft % 60;

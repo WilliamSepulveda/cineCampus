@@ -9,7 +9,7 @@
 </head>
 <body>
     <header class="header">
-        <a href="/choose_seat">
+        <a href="/home_cine">
             <img id="back" src="../storage/img/Back.svg" alt="Back icon">
         </a>
         <h1>Order Summary</h1>
@@ -50,28 +50,28 @@
 
         <section class="payment-method">
             <h3>Payment method</h3>
-            <div class="payment-card">
-                <img src="../storage/img/mastercard-2-logo-svgrepo-com.svg" alt="Visa logo" class="card-logo">
-                <span>**** **** **** 0174</span>
-                <input type="radio" name="payment" value="visa">
-            </div>
+    <label for="payment1" class="payment-card">
+        <img src="../storage/img/mastercard-2-logo-svgrepo-com.svg" alt="Mastercard logo" class="card-logo">
+        <span>**** **** **** 0174</span>
+        <input type="radio" id="payment1" name="payment" value="mastercard">
+    </label>
 
-            <!-- Button to toggle payment options -->
-            <button id="toggle-payment-options" class="toggle-button">Choose a different method</button>
+    <!-- Button to toggle payment options -->
+    <button id="toggle-payment-options" class="toggle-button">Choose a different method</button>
 
-            <!-- Hidden payment options -->
-            <div id="payment-options" class="payment-options hidden">
-                <div class="payment-card">
-                    <img src="../storage/img/visa-svgrepo-com.svg" alt="Visa logo" class="card-logo">
-                    <span>**** **** **** 1234</span>
-                    <input type="radio" name="payment" value="visa">
-                </div>
-                <div class="payment-card">
-                    <img src="../storage/img/paypal-svgrepo-com.svg" alt="PayPal logo" class="card-logo">
-                    <span>PayPal</span>
-                    <input type="radio" name="payment" value="paypal">
-                </div>
-            </div>
+    <!-- Hidden payment options -->
+    <div id="payment-options" class="payment-options hidden">
+        <label for="payment2" class="payment-card">
+            <img src="../storage/img/visa-svgrepo-com.svg" alt="Visa logo" class="card-logo">
+            <span>**** **** **** 1234</span>
+            <input type="radio" id="payment2" name="payment" value="visa">
+        </label>
+        <label for="payment3" class="payment-card">
+            <img src="../storage/img/paypal-svgrepo-com.svg" alt="PayPal logo" class="card-logo">
+            <span>PayPal</span>
+            <input type="radio" id="payment3" name="payment" value="paypal">
+        </label>
+    </div>
 
             <div class="caducidad">
                 <p class="payment-timer">Complete your payment in <span class="timer">04:59</span></p>
