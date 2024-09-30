@@ -215,6 +215,10 @@ header img {
     background-color: #c00; /* Color más oscuro al pasar el ratón */
 }
 
+.buy-ticket:hover {
+    background-color: #c00; /* Color más oscuro al pasar el ratón */
+}
+
 
 @media (min-width: 768px) {
     .main {
